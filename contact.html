@@ -1,0 +1,264 @@
+<!doctype html>
+<html class="no-js" dir="rtl" lang="ar">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تواصل معنا</title>
+    <link rel="stylesheet" href="css/foundation_rtl.css" />
+    <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body class="tranquil">
+
+	<!-- top bar -->
+	<div class="top-bar persiangreen">
+		<div class="large-10 columns  large-offset-1">
+			<div class="top-bar-right">
+				<ul class="dropdown menu" data-dropdown-menu >
+				<li><a href="index.html">الرئيسية</a></li>
+				<li><a href="amazon-order.html">اطلب الآن</a></li>
+				<li><a href="how-we-work.html">طريقة الشراء</a></li>
+				<li><a href="tracking.html">متابعة الطلبات</a></li>
+				<li><a href="shipping-calculator.html">حساب التكلفة</a></li>
+				<li><a href="contact.html">اتصل بنا</a></li>
+				</ul>
+			</div>
+			<!-- login button : opens modal -->
+			<div class="top-bar-left">
+				<!-- a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/ -->
+				<i class="fi-torso" aria-hidden="true"></i>  مرحبا، عيسى السلطان
+			</div>
+		</div>
+
+	</div>
+	
+	<!-- login modal -->
+	<div class="reveal tiny" id="loginModal" data-reveal>
+	  
+	  <div class="title dblSpanishWhite" > 
+	  <i class="fi-torso large"></i>
+	  تسجيل الدخول 
+	  </div>
+	  
+ 	  <div style="padding: 15px;">
+		<form>
+		  <div class="row">
+			<div class="large-12 columns">
+				<input type="text"  placeholder="اسم المستخدم" />
+			</div>
+			<div class="large-12 columns">
+				<input type="text"  placeholder="كلمة السر" />
+			</div>
+			<div class="large-12 columns">
+				<input type="checkbox"  placeholder="حفظ البيانات" />
+				حفظ البيانات
+			</div>
+			<div class="large-12 columns">
+				<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
+			</div>
+		  </div>
+	    </form>
+	  </div>  
+	  
+	  <div style="background: #E4F6F6; padding: 15px; ">
+		<a href="#">استرجاع كلمة السر</a> <br />
+		ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
+	  </div>
+	  <button class="close-button" data-close aria-label="Close reveal" type="button">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>	
+
+	<!-- logo -->
+	<div class="row">
+	  <div class="small-2 small-centered large-6 large-centered columns">
+		<p><img src="images/logo.png" alt="logo image"></p>
+	  </div>
+	</div>
+
+	<!-- breadcrumbs -->
+    <div class="row">
+		<ul class="large-12 column breadcrumb white">
+		  <li><a href="#"><i class="fi-home large"></i> الرئيسية</a></li>
+		  <li><a href="#">اتصل بنا</a></li>
+		</ul>	  
+    </div>
+
+	<!-- body: right side -->
+    <div class="row"> 
+		<div class="small-12 columns "  style="overflow: hidden; padding-right: 0px; padding-left: 0px"> 
+		  <div class="white tabspanel">
+
+			<div class="title">
+				<i class="fi-mail large" aria-hidden="true"></i> اتصل بنا
+			</div>
+			<div style="padding: 15px;">				
+				
+	
+	<!-- up to four columns  -->
+	<div class="small-12 large-6 column">		
+
+		<!-- FORM contact us  -->
+		<form action="contact/send" method="post" onsubmit="return checkme()">
+		  
+			<p>يمكنك ارسال النص عبر هذه الاستمارة، أو زيارتنا بالمكتب، أو الأتصال بأحد ارقام الهواتف</p>
+			<!-- message when validation fails -->
+			<div data-abide-error class="alert callout" style="display: none;">
+				<p><i class="fi-alert"></i> الرجاء تصحيح الاخطاء في تعبئة الاستمارة.</p>
+			</div>
+		  
+			<div class="large-12 columns">
+				<input type="text" name="Subject" placeholder="عنوان" required />
+				<span class="form-error">
+				  فضلا اختر عنوانا لرسالتك
+				</span>					
+			</div>
+
+			<div class="large-12 columns">
+				<label>التواصل بخصوص...
+				<select name="Department" required>
+					<option value="" > اختر واحدة</option>
+					<option value="create_account"> استفسار</option>
+					<option value="create_account"> إنشاء حساب</option>
+					<option value="submit_docs">استلام الطلب</option>
+					<option value="submit_docs">تأكيد الدفع</option>
+					<option value="registration">خطأ في الموقع </option>
+					<option value="others">اخرى</option>
+				</select>
+				</label>
+			</div>
+						
+			<div class="large-12 columns">
+				<textarea rows="3" name="Message" required placeholder="نص الرسالة"></textarea>
+			</div>
+
+			<div class="large-12 columns">
+				<input type="text" name="Name" required  placeholder="الأسم" />
+			</div>
+
+			<div class="large-12 columns">
+				<input type="text" placeholder="رقم التواصل  +966512345678" required pattern="[0-9]*" name="mobile">
+				<span class="form-error">
+				  الرجاء ادخال رقم  الاتصال لنتمكن من التواصل معك.
+				</span>	
+			</div>
+
+			<div class="large-12 columns">
+				<select name="suitable_time" required>
+					<option value="" > انسب وقت للتواصل بالجوال</option>
+					<option value="morning"> 8 - 12 صباحا</option>
+					<option value="evening"> 1 - 4 مساء</option>
+					<option value="night"> 5 - 8 مساء</option>
+				</select>
+				<span class="form-error">
+				  الرجاء اختيار الوقت المناسب
+				</span>	
+			</div>
+
+			<div class="large-12 columns">
+				<input type="text" name="Email" required placeholder="البريد الالكتروني" />
+			</div>
+
+			<div class="large-12 columns">
+				<input type="text" name="token" required placeholder="ادخل حاصل العملية الحسابية 8+1" />
+			</div>
+
+			<div class="large-12 columns">
+				<div class="g-recaptcha" data-sitekey="6LeI2CETAAAAAOvLZlatbLzqJpxy7i2o2jgJfLbb"></div>
+				<div id="captcha"></div>
+				<!-- input type="submit" class="button expanded" value="Send" -->
+				<a href="sent.html" class="button expanded"><i class="fi-mail large"></i> أرسل</a>
+			</div>
+
+		</form>				
+	</div>
+	
+	<div class="small-12 large-6 column">
+		 
+		 <p>
+		 يمكنك زيارة مركز مكتبنا واللقاء بأحد ممثلي الخدمة وجها  لوجه. 
+		 خريطة الموقع:
+		 </p>
+		
+		<div id="map"></div>
+		
+		<!-- code to load google map -->
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script>
+		function initialize() 
+		{
+				var position = new google.maps.LatLng(26.525195,50.031964);
+				var myOptions = {
+				  zoom: 17,
+				  center: position,
+				  mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				var map = new google.maps.Map(
+					document.getElementById("map"),
+					myOptions);
+
+				var marker = new google.maps.Marker({
+					position: position,
+					map: map,
+					title:"This is the place."
+				});  
+
+				var contentString = '<strong>TECHCON | Technical Consultant Est.</strong>!';
+				var infowindow = new google.maps.InfoWindow({
+					content: contentString
+				});
+
+				google.maps.event.addListener(marker, 'click', function() {
+				  infowindow.open(map,marker);
+				});
+
+		}
+		document.onload=initialize();
+		</script>
+
+		<style>
+		  #map {
+			width: 100%;
+			height: 400px;
+		  }
+		</style>
+		
+		<div class="small-12 column">
+			<br>
+			<p>كما يمكنكم التواصل معنا عبر الجوال بالاتصال على الارقام التالية:</p>
+			<ul class="no-bullet">
+				<li><i class="fi-telephone medium"> </i> &nbsp; 0591231234</li>
+				<li><i class="fi-telephone medium"> </i> &nbsp; 0591231234</li>
+			</ul>
+		</div>
+
+	</div>
+				
+				<p>&nbsp;</p>			
+			
+			</div>
+		</div>
+	 </div>
+    </div>
+
+
+	
+	<!-- footer -->
+	<div class="fixed-bottom ">
+		<nav class="top-bar bottom-bar dblSpanishWhite">
+			<div class="row">
+				<div class="medium-6 column">
+					شركة النورس لإعادة الشحن 2017م &copy;
+				</div>
+			</div>
+		</nav>
+	</div>	
+
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/what-input.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+  
+  </body>
+</html>
