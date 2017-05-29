@@ -11,11 +11,17 @@
   </head>
   <body class="tranquil">
 
+  	<!-- mobile menu -->
+	<div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+		<button class="menu-icon" type="button" data-toggle></button>
+		<div class="title-bar-title">قائمة الموقع</div>
+	</div>
+	
 	<!-- top bar -->
 	<div class="top-bar persiangreen">
-		<div class="large-10 columns  large-offset-1">
-			<div class="top-bar-right">
-				<ul class="dropdown menu" data-dropdown-menu >
+		<div class="large-10 columns  large-offset-1" >
+			<div class="top-bar-right" id="site-menu">
+				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
 				<li><a href="amazon-order.html">اطلب الآن</a></li>
 				<li><a href="how-we-work.html">طريقة الشراء</a></li>
@@ -70,7 +76,7 @@
 
 	<!-- logo -->
 	<div class="row">
-	  <div class="small-2 small-centered large-6 large-centered columns">
+	  <div class="small-12 small-centered large-6 large-centered columns">
 		<p><img src="images/logo.png" alt="logo image"></p>
 	  </div>
 	</div>
@@ -128,7 +134,7 @@
 				<div>
 					<div class="small-12 large-8 column">
 					
-						<table>
+						<table class="hover stack column" >
 						  <thead>
 							<tr>
 								<th width="200">صورة المنتج</th>
