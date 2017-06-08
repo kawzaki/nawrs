@@ -39,14 +39,14 @@
          * @access private
          * @var string
          */
-        private $public_key     = "AKIAIWPQUSLLYSCUDOGQ";
+        private $public_key     = "SAMPLEKEYQUtJQUlXUFFVU0xMWVNDVURPR1E=";
         
         /**
          * Your Amazon Secret Access Key
          * @access private
          * @var string
          */
-        private $private_key    = "JVgxT5U/6cmA3pyCujMsXI2j424c4+Wvhm9QnnEy";
+        private $private_key    = "SAMPLEKEYSlZneFQ1VS82Y21BM3B5Q3VqTXNYSTJqNDI0YzQrV3ZobTlRbm5FeQ==";
         
         /**
          * Your Amazon Associate Tag
