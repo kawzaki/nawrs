@@ -103,24 +103,95 @@
 					<li> <i class="fi-shopping-bag" aria-hidden="true"></i> شحن</li>
 				</ul>
 			</div>
+			
+			<!-- product url title  -->
 			<div class="title">
 				ألصق رابط المنتج من أمازون
 			</div>
-			<div style="padding: 15px;">
+			
+			<!-- product url form -->
+			<div style="padding: 15px; overflow: hidden">
 				انسخ رابط المنتج من أمازون برايم والصقه هنا لعرض تفاصيل الشراء والشحن
 				<form action="amazon-order-products.html" method="post">
 				  <div class="row">
-				  
+				  <!-- product url form -->
 					<div class="large-12 columns">
-						<input type="text"  placeholder="رابط منتج أمازون" />
+						<input type="text" placeholder="رابط منتج أمازون" id="prodcturl" />
 					</div>
+
+					<div class="column" style="display: none" id="prod_info">
+						<div class="small-12 large-3 column">
+							<img id="prod_img_url" src="http://placehold.it/150x150" class="thumbnail" />
+						</div>
+						<div class="small-12 large-9 column">
+							<h2 id="prod_title"> وصف المنتج في هذه الخانة</h2>
+							<div class="small-6 column"> 
+								<label> السعر: </label>  <span id="prod_price"></span>
+								<label> الكمية: </label> <span id="prod_qty" ></span>
+							</div>
+							<div class="small-6 column">
+								<label> الوزن: </label> <span id="prod_weight" ></span>
+								<label> الحجم <i class="fi-info"> </i>:  </label> <span id="prod_size" ></span>
+								<span id="ASIN" ></span>
+							</div>
+							
+						</div>
+					</div>
+					
 					<div class="large-12 columns float-right">
-						<input type="submit" class="button expanded persiangreen" value="أضف">
+						<input type="submit" class="button expanded persiangreen" id="addToCartBtn" value="أضف">
 					</div>
 				  </div>
 
 				</form>				
-			<p>&nbsp;</p>			
+				<p>&nbsp;</p>
+
+				<!-- added products (cart) -->
+				<div>
+					<div class="small-12 large-8 column">
+					
+						<table id="cart">
+						  <thead>
+							<tr>
+								<th width="200">صورة المنتج</th>
+								<th width="200">الوصف</th>
+								<th>الكمية</th>
+								<th width="150">اللون</th>
+								<th width="150">المقاس</th>
+								<th width="200">السعر</th>								
+							</tr>
+						  </thead>
+						  
+						  <tbody>
+							
+							<tr>
+								<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
+								<td>كمبيوتر</td>
+								<td>19.9</td>
+								<td>1</td>
+								<td>احمر</td>
+								<td>L</td>
+							</tr>							
+							
+						</tbody>
+					</table>					
+					
+					</div>
+					<div class="small-12 large-4 column">
+						تكلفة المشتريات<h1>57.5$</h1>
+						
+						<div>
+							<ul>
+								<li>مجموع قيمة المنتجات <span class="float-left">39.8</span></li>
+								<li>ضريبة المبيعات في أمريكا <span class="float-left">2.38</span></li>
+								<li>رسوم الشحن الدولي <span class="float-left">13.2</span></li>		
+						</div>
+						<a href="payment.html" class="button primary float-left"><i class="fi-credit-card" aria-hidden="true"> </i> أدفع</a>
+					</div>
+				</div>
+				
+				<!-- end of added products -->
+				<p>&nbsp;</p>			
 			</div>
 		 </div>
 	 </div>
@@ -139,6 +210,7 @@
 	</div>	
 
     <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/notify.min.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
     <script src="js/foundation.min.js"></script>
     <script src="js/app.js"></script>
