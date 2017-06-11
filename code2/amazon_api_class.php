@@ -40,6 +40,7 @@
          * @access private
          * @var string
          */
+
         private $public_key;
         
         /**
@@ -47,6 +48,7 @@
          * @access private
          * @var string
          */
+
         private $private_key;
         
         /**
