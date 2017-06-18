@@ -147,44 +147,34 @@
 				<p>&nbsp;</p>
 
 				<!-- added products (cart) -->
-				<div>
+				<div id="itemsList" style="display: none;">
 					<div class="small-12 large-8 column">
 					
 						<table id="cart">
 						  <thead>
 							<tr>
-								<th width="200">صورة المنتج</th>
-								<th width="200">الوصف</th>
-								<th>الكمية</th>
+								<th width="50">رقم</th>
+								<th width="350">المنتج</th>
 								<th width="150">اللون</th>
 								<th width="150">المقاس</th>
 								<th width="200">السعر</th>								
+								<th width="200">الشحن</th>								
+								<th width="50"> &nbsp</th>								
 							</tr>
 						  </thead>
 						  
 						  <tbody>
-							
-							<tr>
-								<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
-								<td>كمبيوتر</td>
-								<td>19.9</td>
-								<td>1</td>
-								<td>احمر</td>
-								<td>L</td>
-							</tr>							
-							
-						</tbody>
+						  </tbody>
 					</table>					
 					
 					</div>
 					<div class="small-12 large-4 column">
-						تكلفة المشتريات<h1>57.5$</h1>
-						
+						تكلفة المشتريات<h1 id="itemsCost">57.5$</h1>
+						عدد المشتريات <label id="itemsCount"></label>
 						<div>
 							<ul>
 								<li>مجموع قيمة المنتجات <span class="float-left">39.8</span></li>
-								<li>ضريبة المبيعات في أمريكا <span class="float-left">2.38</span></li>
-								<li>رسوم الشحن الدولي <span class="float-left">13.2</span></li>		
+								<li>رسوم الشحن الدولي <span class="float-left cartShipping">13.2</span></li>		
 						</div>
 						<a href="payment.html" class="button primary float-left"><i class="fi-credit-card" aria-hidden="true"> </i> أدفع</a>
 					</div>
