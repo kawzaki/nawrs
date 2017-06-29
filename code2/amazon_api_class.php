@@ -31,8 +31,7 @@
     */
     
     require_once 'aws_signed_request.php';
-
-	
+    	
     class AmazonProductAPI
     {
         /**
@@ -40,7 +39,6 @@
          * @access private
          * @var string
          */
-
         private $public_key;
         
         /**
@@ -48,7 +46,6 @@
          * @access private
          * @var string
          */
-
         private $private_key;
         
         /**
@@ -74,11 +71,13 @@
         const DVD   = "DVD";
         const GAMES = "VideoGames";
         
-        function __construct($public_key, $private_key)
+        
+		function __construct($public_key, $private_key)
 		{
 			$this->public_key 	= $public_key;
 			$this->private_key	= $private_key;
 		}
+		
         /**
          * Check if the xml received from Amazon is valid
          * 
@@ -101,7 +100,62 @@
                 }
                 else
                 {
-                    throw new Exception("Invalid xml response.");
+                    throw new Exception("Invalid ItemByASIN xml response.");
+                }
+            }
+        }
+
+        /**
+         * Check if the xml received from Amazon is valid
+         * 
+         * @param mixed $response xml response to check
+         * @return bool false if the xml is invalid
+         * @return mixed the xml response if it is valid
+         * @return exception if we could not connect to Amazon
+         */
+        private function verifyOffersXmlResponse($response)
+        {
+            if ($response === False)
+            {
+                throw new Exception("Could not connect to Amazon");
+            }
+            else
+            {
+                if (isset($response->Items))
+                {
+                    return ($response);
+                }
+                else
+                {
+                    throw new Exception("Invalid OffersXml response.");
+                }
+            }
+        }
+        
+        /**
+         * Check if the xml received from Amazon is valid
+         * 
+         * @param mixed $response xml response to check
+         * @return bool false if the xml is invalid
+         * @return mixed the xml response if it is valid
+         * @return exception if we could not connect to Amazon
+         */
+        private function verifyVariationMatrixXmlResponse($response)
+        {
+            if ($response === False)
+            {
+                throw new Exception("Could not connect to Amazon");
+            }
+            else
+            {
+                if ( isset($response->Items->Item->Variations) )
+                //if ( $response  )
+                {
+                    return ($response);
+                }
+                else
+                {
+                    throw new Exception("Invalid Variations xml response.");
                 }
             }
         }
@@ -188,11 +242,48 @@
         {
             $parameters = array("Operation"     => "ItemLookup",
                                 "ItemId"        => $asin_code,
-                                "ResponseGroup" => "Medium");
+                                "ResponseGroup" => "Medium,Offers,VariationMatrix",
+								"MerchantId"	=> "All");
                                 
             $xml_response = $this->queryAmazon($parameters);
             
             return $this->verifyXmlResponse($xml_response);
+        }
+
+        /**
+         * Return offers of a product searched by ASIN
+         * 
+         * @param int $asin_code ASIN code of the product to search
+         * @return mixed simpleXML object
+         */
+        public function getItemByAsinOffers($asin_code)
+        {
+            $parameters = array("Operation"     => "ItemLookup",
+                                "ItemId"        => $asin_code,
+                                "ResponseGroup" => "VariationOffers",
+								"MerchantId"	=> "All");
+                                
+            $xml_response = $this->queryAmazon($parameters);
+            
+            return $this->verifyOffersXmlResponse($xml_response);
+        } 
+
+		/**
+         * Return variationmatrix of a product searched by ASIN
+         * 
+         * @param int $asin_code ASIN code of the product to search
+         * @return mixed simpleXML object
+         */
+        public function getItemByAsinVariationMatrix($asin_code)
+        {
+            $parameters = array("Operation"     => "ItemLookup",
+                                "ItemId"        => $asin_code,
+                                "ResponseGroup" => "VariationMatrix,Variations",
+								"MerchantId"	=> "All");
+                                
+            $xml_response = $this->queryAmazon($parameters);
+            
+            return $this->verifyVariationMatrixXmlResponse($xml_response);
         }
         
         

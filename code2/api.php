@@ -27,6 +27,9 @@
 		$oProdcut			= getProductObject( $amzproduct_ASIN );
 		$productInfo		= parseProductXML( $oProdcut );
 		
+		// saveJson( jsonifyArray ($productInfo) );
+		$filepath			= "../data/$amzproduct_ASIN.json";
+		file_put_contents($filepath, jsonifyArray ($productInfo) );
 	
 
 		// check if price is in the ListPrice
@@ -34,7 +37,7 @@
 		{
 			$result = $obj->getItemByAsinOffers($amzproduct_ASIN);
 			//print_r($result);
-			echo "no price for this item<br>";
+			echo "no price for this item, might be out of stock!<br>";
 		}
 		
 		// display the retrived basic information about this item

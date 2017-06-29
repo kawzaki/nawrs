@@ -124,15 +124,29 @@
 							<img id="prod_img_url" src="http://placehold.it/150x150" class="thumbnail" />
 						</div>
 						<div class="small-12 large-9 column">
-							<h2 id="prod_title"> وصف المنتج في هذه الخانة</h2>
-							<div class="small-6 column"> 
-								<label> السعر: </label>  <span id="prod_price"></span>
-								<label> الكمية: </label> <span id="prod_qty" ></span>
+							<h3 id="prod_title"> وصف المنتج في هذه الخانة</h3>
+							<div class="small-2 column"> 
+								<label> السعر: </label>  USD
+								<span id="prod_price"></span>
 							</div>
-							<div class="small-6 column">
-								<label> الوزن: </label> <span id="prod_weight" ></span>
-								<label> الحجم <i class="fi-info"> </i>:  </label> <span id="prod_size" ></span>
+							<div class="small-2 column"> 
+								<label> اللون: </label> 
+								<span id="prod_color" ></span>
+							</div>
+							<div class="small-2 column"> 
+								<label> المقاس/الحجم: </label> 
+								<span id="prod_size" ></span>
+							</div>
+							<div class="small-1 column"> 
+								<label> الوزن: </label> <span id="prod_weight" ></span>LB
+							</div>
+							<div class="small-3 column"> 
+								<label> قياس الأبعاد <i class="fi-info"> </i>:  </label> <span id="prod_dimensions" ></span>
 								<span id="ASIN" ></span>
+							</div>
+							<div class="small-2 column"> 
+								<label> تكلفة الشحن:  </label> <span id="prod_shipping" ></span>
+								<span id="ASIN" ></span>SAR
 							</div>
 							
 						</div>
@@ -150,10 +164,9 @@
 				<div id="itemsList" style="display: none;">
 					<div class="small-12 large-8 column">
 					
-						<table id="cart">
+						<table id="items">
 						  <thead>
 							<tr>
-								<th width="50">رقم</th>
 								<th width="350">المنتج</th>
 								<th width="150">اللون</th>
 								<th width="150">المقاس</th>
@@ -169,12 +182,12 @@
 					
 					</div>
 					<div class="small-12 large-4 column">
-						تكلفة المشتريات<h1 id="itemsCost">57.5$</h1>
-						عدد المشتريات <label id="itemsCount"></label>
+						قيمة الفاتورة<h1 id="invoiceCost">57.5$</h1>
 						<div>
 							<ul>
-								<li>مجموع قيمة المنتجات <span class="float-left">39.8</span></li>
-								<li>رسوم الشحن الدولي <span class="float-left cartShipping">13.2</span></li>		
+								<li>عدد المشتريات <span id="itemsCount" class="float-left"></span></li>
+								<li>مجموع قيمة المنتجات <span id="itemsCost" class="float-left"></span></li>
+								<li>رسوم الشحن الدولي <span id="shippingCost" class="float-left cartShipping"></span></li>		
 						</div>
 						<a href="payment.html" class="button primary float-left"><i class="fi-credit-card" aria-hidden="true"> </i> أدفع</a>
 					</div>
