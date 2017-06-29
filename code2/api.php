@@ -17,6 +17,10 @@
 		include("class.amazon.rest.php");
 	
 		$amzproduct_ASIN	= $_POST["amzproduct"];
+		if( strlen($amzproduct_ASIN) > 10)
+		{
+			$amzproduct_ASIN	=	amazon_get_asin_code($amzproduct_ASIN);
+		}
 		
 		//
 		// Instanitate an OBJECT
