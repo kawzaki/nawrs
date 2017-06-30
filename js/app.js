@@ -8,10 +8,7 @@ $( document ).ready(function() {
 	cart.itemsCost		= 0;
 	cart.shippingCost	= 0;
 	cart.invoiceCost	= 0;
-	
-	// this will hold the json of item
-	var product 		= {}; 
-	
+		
 	// get asin from URL
 	function getAsinFromUrl(url)
 	{
@@ -27,7 +24,7 @@ $( document ).ready(function() {
 	$("#prodcturl").on('change paste', function() {
 		// getProductInfo();
 		var prod_url	= $("#prodcturl").val()
-		getProductInfo(prod_url, product);
+		product 		= getProductInfo(prod_url);
 	});
 
 	// observe addToCartBtn.
@@ -42,7 +39,6 @@ $( document ).ready(function() {
 			event.preventDefault();
 			// console.log("caught the delete click : "+ event.target.id);
 
-						
 			// update invoice
 			removeFromInvoice( event.target.id );
 			
@@ -55,15 +51,21 @@ $( document ).ready(function() {
 	}
 	
 	// get product info 
-	function getProductInfo(prod_url, products){
+	function getProductInfo(prod_url){
+		
+		
+		// parse the url for ASIN code
 		prod_url = $.trim(prod_url);
 		if(prod_url.length > 10 ) prod_url = getAsinFromUrl(prod_url);
 		// console.log("prod_url: " + prod_url);
 		if( prod_url.length < 3) {return false;}
-		$.getJSON( "data/"+ prod_url +".json", { name: "John", time: "2pm" } )
+		
+		// get the data from server
+		$.getJSON( "data/"+ prod_url +".json", { name: "amazon", time: Date.now() } )
 		  .done(function( json ) {
 			// console.log(json);
 			
+			// store result in product object
 			product 				= json;
 			
 			// convert USD to SAR
@@ -83,6 +85,7 @@ $( document ).ready(function() {
 			$(	"#prod_info"		).slideDown();
 			// reset url input
 			$("#prodcturl").val("");
+			return product;
 			
 		  })
 		  .fail(function( jqxhr, textStatus, error ) {
@@ -94,37 +97,45 @@ $( document ).ready(function() {
 	// add product to cart
 	function addToCart()
 	{
-		// console.log( "products json: " + product );
-		product.id 		= product.ASIN;
+		var newItem = Object.assign({}, product); 
+		newItem.ID 		= Date.now();
+		
+		console.log( "product id: " + newItem.ID );
 		newProduct = "<tr>"
-						+ "<td><img src=\""+ product.Image_url + "\" class=\"thumbnail\" /> </td>"
-						+ "<td>"+ product.Color			+"</td>"
-						+ "<td>"+ product.Size			+"</td>"
-						+ "<td>"+ product.PriceSAR		+" SAR</td>"						
-						+ "<td>"+ product.DimCostPerKG	+" SAR </td>"						
-						+ "<td> <i class='fi-x removeItem button warninng' id='"+ product.ASIN +"'></i></td>"
+						+ "<td><img src=\""+ newItem.Image_url + "\" class=\"thumbnail\" /> </td>"
+						+ "<td>"+ newItem.Color			+"</td>"
+						+ "<td>"+ newItem.Size			+"</td>"
+						+ "<td>"+ newItem.PriceSAR		+" SAR</td>"						
+						+ "<td>"+ newItem.DimCostPerKG	+" SAR </td>"						
+						+ "<td> <i class='fi-x removeItem button warninng' id='"+ newItem.ID +"'></i></td>"
 						+ "</tr>";
 						
 		$('#items > tbody:last-child').append(newProduct);
 		$("#addToCartBtn").notify("success", {className:"success"});
 		$("#itemsList").slideDown();
+		
+		// start observer for remove from cart button
 		observeRemoveBtn();
-		addToInvoice(product);
+		
+		// add to invoice
+		addToInvoice(newItem);
 	}
 	
 
 	// update UI for cart and invoice
-	function addToInvoice(){
+	function addToInvoice( newItem ){
+		
+		console.log( "adding newItem: " + newItem.ID);
 		// add product to cart
-		cart.push(product);
+		cart.push(newItem);
 		
 		// items total cost
-		cart.itemsCost 	+= parseFloat(product.PriceSAR, 10);
+		cart.itemsCost 	+= parseFloat(newItem.PriceSAR, 10);
 		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
 		// console.log( cart.itemsCost)
 		
 		// items total shipping cost
-		cart.shippingCost 	+= parseFloat(product.DimCostPerKG, 10);
+		cart.shippingCost 	+= parseFloat(newItem.DimCostPerKG, 10);
 		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
 		// console.log( cart.totalCost)
 		
@@ -132,37 +143,59 @@ $( document ).ready(function() {
 		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
 		
 		// update invoice
-		$("#itemsCount").html( cart.length);
-		$("#itemsCost").html( cart.itemsCost);
-		$("#shippingCost").html( cart.shippingCost);
-		$("#invoiceCost").html( cart.invoiceCost);
+		updateInvoice();
 		
 		mycart = cart;
 	}
 	
 		
 	// update UI for cart and invoice
-	function removeFromInvoice( ASIN ){
+	function removeFromInvoice( id ){
 			
+		console.log("finding :  " + id );
 		// find item from array
 		// this may not work in old browsers
-		item	=	cart.find(x => x.ASIN === ASIN);
-		// console.log("removing: " + ASIN  + " its price is: "+ item.Price);
+		item	=	cart.find(x => x.ID == id);
+		console.debug(item);
+		console.log("removing: " + id  + " its price is: "+ item.PriceSAR);
 		
 		// subtract price from total (decimal float)
 		// console.log( "totalCost = " + cart.totalCost +" -" + parseFloat(item.Price, 10));
-		cart.totalCost 	-= parseFloat(item.Price, 10);
+		cart.totalCost 	-= parseFloat(item.PriceSAR, 10);
 		cart.totalCost	= parseFloat(cart.totalCost.toFixed(4));
-		// console.log( "new totalCost: " + cart.totalCost)
+		// console.log( "new totalCost: " - cart.totalCost)
+		
+		// items total cost
+		cart.itemsCost 	-= parseFloat(item.PriceSAR, 10);
+		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
+		// console.log( cart.itemsCost)
+		
+		// items total shipping cost
+		cart.shippingCost 	-= parseFloat(item.DimCostPerKG, 10);
+		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
+		// console.log( cart.totalCost)
+		
+		cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
+		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
+		
 		
 		// remove product from cart
-		mycart.removeItem("ASIN", ASIN)
+		cart.removeItem("ID", id)
 		
 		// update invoice
-		$("#itemsCount").html( cart.length);
-		$("#itemsCost").html( cart.totalCost);
+		updateInvoice();
 	}
 
+	// 
+	// update invoice
+	function updateInvoice()
+	{
+		$("#itemsCount").html( cart.length);
+		$("#itemsCost").html( cart.itemsCost);
+		$("#shippingCost").html( cart.shippingCost);
+		$("#invoiceCost").html( cart.invoiceCost);
+				
+	}
 
 	// remove objects from array using search for value:
 	Array.prototype.removeItem = function (key, value) {
@@ -172,8 +205,9 @@ $( document ).ready(function() {
 		for (var i in this) {
 			if (this[i][key] == value) {
 				this.splice(i, 1);
+				return true;
 			}
 		}
-		return true;
+		return false;
 	};	
 });
