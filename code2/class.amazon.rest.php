@@ -118,11 +118,13 @@
 			// $dimWeightKg	= round($dimWeight/2.2, 1);
 			$dimWeightKg	= ($dimWeight/2.2);
 			$dimWeightKg	= round( $dimWeightKg *2) / 2;
-			$dimCostPerKG	= ( ($dimWeightKg/0.5) * 25);
+			$dimWeightKg		= ($dimWeightKg > 0) ? $dimWeightKg : 0.5;
+			//$dimCostPerKG	= ( ($dimWeightKg0.5) * 25);
 		}
 
 		$dimWeightKg		= ($dimWeightKg > 0) ? $dimWeightKg : 0.5;
-				
+		$dimCostPerKG	= ( ($dimWeightKg/0.5) * 25);
+		
 		$priceOffer			= $xmlProduct->Items->Item->OfferSummary->LowestNewPrice->FormattedPrice->__toString();
 		$price 				= $xmlProduct->Items->Item->ItemAttributes->ListPrice->Amount;	
 		$price				= number_format(($price/ 100), 2, '.', '');
@@ -138,6 +140,7 @@
 									 "Brand" 		=>	$xmlProduct->Items->Item->ItemAttributes->Brand->__toString(),
 									 "Height"		=>	$height,
 									 "Width"		=>	$width,
+									 "Length"		=>	$length,
 									 "ItemLength"	=>	$itemLength,
 									 "ItemHeight"	=>	$itemHeight,
 									 "ItemWidth"	=>	$itemWidth,

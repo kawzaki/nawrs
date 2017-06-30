@@ -12,6 +12,17 @@ $( document ).ready(function() {
 	// this will hold the json of item
 	var product 	= {}; 
 	
+	// get asin from URL
+	function getAsinFromUrl(url)
+	{
+		var regex = RegExp("www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})");
+		m = url.match(regex);
+		if (m) { 
+			return m[4];
+		}		
+		return null;
+	}
+	
 	// observe url text input
 	$("#prodcturl").on('change paste', function() {
 		// getProductInfo();
@@ -29,7 +40,7 @@ $( document ).ready(function() {
 	function observeRemoveBtn(){	
 		$("#items .removeItem").on("click",function(event) {
 			event.preventDefault();
-			console.log("caught the delete click : "+ event.target.id);
+			// console.log("caught the delete click : "+ event.target.id);
 
 						
 			// update invoice
@@ -46,11 +57,12 @@ $( document ).ready(function() {
 	// get product info 
 	function getProductInfo(prod_url, products){
 		prod_url = $.trim(prod_url);
-		console.log("prod_url: " + prod_url);
-		if( prod_url.length < 3) {console.log("empty asin");return false;}
+		if(prod_url.length > 10 ) prod_url = getAsinFromUrl(prod_url);
+		// console.log("prod_url: " + prod_url);
+		if( prod_url.length < 3) {return false;}
 		$.getJSON( "data/"+ prod_url +".json", { name: "John", time: "2pm" } )
 		  .done(function( json ) {
-			console.log(json);
+			// console.log(json);
 			
 			product 				= json;
 			
@@ -69,18 +81,21 @@ $( document ).ready(function() {
 			$(	"#prod_shipping"	).text(json.DimCostPerKG)
 			$(	"#prod_img_url"		).attr('src', json.Image_url); 
 			$(	"#prod_info"		).slideDown();
+		
+			// reset url input
+			$("#prodcturl").val("");
 			
 		  })
 		  .fail(function( jqxhr, textStatus, error ) {
 			var err = textStatus + ", " + error;
-			console.log( "Request Failed: " + err );
+			// console.log( "Request Failed: " + err );
 		});
 	}
 	
 	// add product to cart
 	function addToCart()
 	{
-		console.log( "products json: " + product );
+		// console.log( "products json: " + product );
 		product.id 		= product.ASIN;
 		newProduct = "<tr>"
 						+ "<td><img src=\""+ product.Image_url + "\" class=\"thumbnail\" /> </td>"
@@ -107,12 +122,12 @@ $( document ).ready(function() {
 		// items total cost
 		cart.itemsCost 	+= parseFloat(product.PriceSAR, 10);
 		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
-		console.log( cart.itemsCost)
+		// console.log( cart.itemsCost)
 		
 		// items total shipping cost
 		cart.shippingCost 	+= parseFloat(product.DimCostPerKG, 10);
 		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
-		console.log( cart.totalCost)
+		// console.log( cart.totalCost)
 		
 		cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
 		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
@@ -133,13 +148,13 @@ $( document ).ready(function() {
 		// find item from array
 		// this may not work in old browsers
 		item	=	cart.find(x => x.ASIN === ASIN);
-		console.log("removing: " + ASIN  + " its price is: "+ item.Price);
+		// console.log("removing: " + ASIN  + " its price is: "+ item.Price);
 		
 		// subtract price from total (decimal float)
-		console.log( "totalCost = " + cart.totalCost +" -" + parseFloat(item.Price, 10));
+		// console.log( "totalCost = " + cart.totalCost +" -" + parseFloat(item.Price, 10));
 		cart.totalCost 	-= parseFloat(item.Price, 10);
 		cart.totalCost	= parseFloat(cart.totalCost.toFixed(4));
-		console.log( "new totalCost: " + cart.totalCost)
+		// console.log( "new totalCost: " + cart.totalCost)
 		
 		// remove product from cart
 		mycart.removeItem("ASIN", ASIN)
