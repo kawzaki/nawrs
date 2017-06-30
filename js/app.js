@@ -10,7 +10,7 @@ $( document ).ready(function() {
 	cart.invoiceCost	= 0;
 	
 	// this will hold the json of item
-	var product 	= {}; 
+	var product 		= {}; 
 	
 	// get asin from URL
 	function getAsinFromUrl(url)
@@ -81,7 +81,6 @@ $( document ).ready(function() {
 			$(	"#prod_shipping"	).text(json.DimCostPerKG)
 			$(	"#prod_img_url"		).attr('src', json.Image_url); 
 			$(	"#prod_info"		).slideDown();
-		
 			// reset url input
 			$("#prodcturl").val("");
 			
