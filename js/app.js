@@ -2,6 +2,19 @@ $(document).foundation();
 
 var mycart;
 $( document ).ready(function() {	
+
+	// homepage slider
+	// $("#owl-homepage").owlCarousel({
+
+	  // navigation : false, // Show next and prev buttons
+	  // slideSpeed : 300,
+	  // paginationSpeed : 400,
+	  // singleItem:true,
+	  // transitionStyle : "backSlide",
+	  // autoPlay: true
+	// });
+
+
 	// global vars
 	// 
 	var cart			= new Array();	
@@ -75,12 +88,16 @@ $( document ).ready(function() {
 			// show fetched product info 
 			$(	"#prod_title"		).text(json.Title)
 			$(	"#prod_price"		).text(json.Price +"\nSAR"+ PriceSAR)
-			$(	"#prod_weight"		).text(json.ItemWeight)
-			$(	"#prod_dimensions"	).text(json.ItemLength + "x"+ json.ItemHeight +"x"+ json.ItemWidth)
+			$(	"#prod_weight"		).text("المنتج: "+json.ItemWeight + " معلب " + json.PkgDimWeight )
+			$(	"#prod_dimensions"	).html(" المنتج: " +
+										json.ItemLength + "<b>x</b>"+ json.ItemHeight +"<b>x</b>"+ json.ItemWidth +
+										 "<br> معلب: " +
+										 json.Length + "<b>x</b>"+ json.Height +"<b>x</b>"+ json.Width
+										)
 			$(	"#prod_ASIN"		).text(json.ASIN)
 			$(	"#prod_color"		).text(json.Color)
 			$(	"#prod_size"		).text(json.Size)
-			$(	"#prod_shipping"	).text(json.DimCostPerKG)
+			$(	"#prod_shipping"	).text("المنتج: " + json.DimCostPerKG + " معلب: " + json.PkgCostPerKG)
 			$(	"#prod_img_url"		).attr('src', json.Image_url); 
 			$(	"#prod_info"		).slideDown();
 			// reset url input
@@ -105,13 +122,13 @@ $( document ).ready(function() {
 						+ "<td><img src=\""+ newItem.Image_url + "\" class=\"thumbnail\" /> </td>"
 						+ "<td>"+ newItem.Color			+"</td>"
 						+ "<td>"+ newItem.Size			+"</td>"
-						+ "<td>"+ newItem.PriceSAR		+" SAR</td>"						
-						+ "<td>"+ newItem.DimCostPerKG	+" SAR </td>"						
+						+ "<td>"+ newItem.PriceSAR		+" ريال</td>"						
+						+ "<td>"+ newItem.DimCostPerKG	+" ريال </td>"						
 						+ "<td> <i class='fi-x removeItem button warninng' id='"+ newItem.ID +"'></i></td>"
 						+ "</tr>";
 						
 		$('#items > tbody:last-child').append(newProduct);
-		$("#addToCartBtn").notify("success", {className:"success"});
+		$("#addToCartBtn").notify("تم إضافته لسلة المشتريات", {className:"success"});
 		$("#itemsList").slideDown();
 		
 		// start observer for remove from cart button
@@ -193,7 +210,7 @@ $( document ).ready(function() {
 		$("#itemsCount").html( cart.length);
 		$("#itemsCost").html( cart.itemsCost);
 		$("#shippingCost").html( cart.shippingCost);
-		$("#invoiceCost").html( cart.invoiceCost);
+		$("#invoiceCost").html( cart.invoiceCost + " ريال");
 				
 	}
 
