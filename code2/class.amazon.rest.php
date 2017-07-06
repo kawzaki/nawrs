@@ -80,10 +80,11 @@
 	// ========================================================================================================= 
 	function parseProductXML( $xmlProduct )
 	{
-		// 
+		// ----------------------------------------------------------------------------------------- 
 		// Get title, price and image URL from the response		
 		//
 		// PackageDimensions and weight
+		// -----------------------------------------------------------------------------------------
 
 		$height 			= 	$xmlProduct->Items->Item->ItemAttributes->PackageDimensions->Height;
 		$height				= 	number_format((float) ($height / 100), 2, '.', '');
@@ -108,61 +109,62 @@
 				
 		$pkgCostPerKG		= 	( ($pkgDimWeightKG/0.5) * 25);
 			
-		//
-		// Item Dimensions and weight
-		
+		// -----------------------------------------------------------------------------------------
+		// check ItemDimensions for actual weight
+		// -----------------------------------------------------------------------------------------
 		if (isset($xmlProduct->Items->Item->ItemAttributes->ItemDimensions))
-		{
-			$itemHeight 	= 	$xmlProduct->Items->Item->ItemAttributes->ItemDimensions->Height;
-			$itemHeight		= 	number_format((float) ($itemHeight / 100), 2, '.', '');
-					
-			$itemLength 	= 	$xmlProduct->Items->Item->ItemAttributes->ItemDimensions->Length;
-			$itemLength		= 	round(number_format((float) ($itemLength / 100), 2, '.', ''), 1);
-		
-			$itemWidth 		= 	$xmlProduct->Items->Item->ItemAttributes->ItemDimensions->Width;
-			$itemWidth		= 	number_format((float) ($itemWidth / 100), 2, '.', '');
-		
+		{	
 			$itemWeight 	= 	$xmlProduct->Items->Item->ItemAttributes->ItemDimensions->Weight;
 			$itemWeight		= 	number_format((float) ($itemWeight / 100), 2, '.', '');
-			
-			// cost of shipping based on actual item weight
-			// convert to kg and round the number: 
-			$itemWeightKg	= 	($itemWeight/2.2);
-			$itemWeightKg	= 	round( $itemWeightKg *2) / 2;
-			
-			$itemWeightCost	= 	( ($itemWeightKg/0.5) * 25);
-
-		
-			// Dimensional Weight for item:
-			$dimWeight		= 	ceil(($itemLength*$itemWidth * $itemHeight)/139);
-	
-			// convert to kg and round the number, ensure not 0:
-			$dimWeightKg	= 	($dimWeight/2.2);
-			$dimWeightKg	= 	round( $dimWeightKg *2) / 2;
-			
 		}
 
-		// dimensional weight calculation (if not given, assume 0.5kg
-		$dimWeightKg		= ($dimWeightKg > 0) ? $dimWeightKg : 0.5;
-		$dimCostPerKG		= ( ($dimWeightKg/0.5) * 25);
 		
+		// cost of shipping based on actual item weight
+		// if not provided by amazon, assume 1LB.
+		// convert to kg and round the number: 
+		$itemWeight			= 	( ( float) $itemWeight > 0 ) ? $itemWeight : 1.0;
+		$itemWeightKg		= 	($itemWeight/2.2);
+		$itemWeightKg		= 	round( $itemWeightKg , 2);
+		$itemWeightCost		= 	( ($itemWeightKg/0.5) * 25);		
+		
+		// -----------------------------------------------------------------------------------------
 		// compare shipping cost Pure Item WeightDimensional VS Package Dimensional Weight
-		$calShipCost		= ( $itemWeightKg > $pkgDimWeightKG) ? "Item Weight: " . $itemWeightCost : "Pkg Dim Weight: " . $pkgCostPerKG;
+		// -----------------------------------------------------------------------------------------
+		$calShipCost		= 	( $itemWeightKg > $pkgDimWeightKG) ? "Item Weight: " . $itemWeightCost : "Pkg Dim Weight: " . $pkgCostPerKG;
+		$shippingCost		= 	( $itemWeightKg > $pkgDimWeightKG) ? $itemWeightCost : $pkgCostPerKG;
+			
+		//$priceOffer		= 	(string) $xmlProduct->Items->Item->OfferSummary->LowestNewPrice->FormattedPrice;
+		$priceOffer			= 	$xmlProduct->Items->Item->OfferSummary->LowestNewPrice->Amount;
+		$priceOffer			= 	number_format(($priceOffer/ 100), 2, '.', '');
 		
-		$priceOffer			= "" . $xmlProduct->Items->Item->OfferSummary->LowestNewPrice->FormattedPrice;
-		$price 				= $xmlProduct->Items->Item->ItemAttributes->ListPrice->Amount;	
-		$price				= number_format(($price/ 100), 2, '.', '');
-		$image_url			= "" . $xmlProduct->Items->Item->MediumImage->URL;
-				
-		$isPrime			= ($xmlProduct->Items->Item->Offers->Offer->OfferListing->IsEligibleForPrime || 0) ? "1" : "0";	
+		$price 				= 	$xmlProduct->Items->Item->ItemAttributes->ListPrice->Amount;	
+		$price				= 	number_format(($price/ 100), 2, '.', '');		
+		
+		if( (float) $priceOffer < (float) $price ) {
+			$tax				= 	$priceOffer * 0.06;
+		}
+		else{
+			$tax				= 	$price * 0.06;
+		}
+		//$tax				= 	round( $tax *2) / 2; 
+		//$taxSAR			= 	round( ($tax *3.75) *2 )/2; 
+		$taxSAR				= 	round( ($tax *3.75), 1) . 0; 
+							
 
-		$size 				= (string) $xmlProduct->Items->Item->ItemAttributes->Size;
-		$size 				= ( empty($size) ) ?  "- - -" : $size;
+		$image_url			= 	(string) $xmlProduct->Items->Item->MediumImage->URL;
+					
+		$isPrime			= 	($xmlProduct->Items->Item->Offers->Offer->OfferListing->IsEligibleForPrime || 0) ? "1" : "0";	
 	
-		$Color 				= (string) $xmlProduct->Items->Item->ItemAttributes->Color;
-		$Color 				= ( empty($Color) ) ?  "- - -" : $Color;
-				
-		$Product			= array( "ASIN"				=>	(string) $xmlProduct->Items->Item->ASIN,
+		$size 				= 	(string) $xmlProduct->Items->Item->ItemAttributes->Size;
+		$size 				= 	( empty($size) ) ?  "- - -" : $size;
+		
+		$Color 				= 	(string) $xmlProduct->Items->Item->ItemAttributes->Color;
+		$Color 				= 	( empty($Color) ) ?  "- - -" : $Color;
+					
+		// -----------------------------------------------------------------------------------------
+		// build product attributes array
+		// -----------------------------------------------------------------------------------------
+		$Product			= 	array( "ASIN"			=>	(string) $xmlProduct->Items->Item->ASIN,
 									 "Title" 			=>	(string) $xmlProduct->Items->Item->ItemAttributes->Title,
 									 "Brand" 			=>	(string) $xmlProduct->Items->Item->ItemAttributes->Brand,
 									 "ProductGroup" 	=>	(string) $xmlProduct->Items->Item->ItemAttributes->ProductGroup,
@@ -170,22 +172,18 @@
 									 "Height"			=>	$height,
 									 "Width"			=>	$width,
 									 "Length"			=>	$length,
-									 "ItemLength"		=>	$itemLength,
-									 "ItemHeight"		=>	$itemHeight,
-									 "ItemWidth"		=>	$itemWidth,
 									 "ItemWeight"		=>	$itemWeight,
 									 "ItemWeightKg"		=>	$itemWeightKg,
 									 "PkgDimWeight"		=>	$pkgDimWeight,
 									 "pkgDimWeightKG"	=>	$pkgDimWeightKG,
-									 "PkgCostPerKG"		=>	$pkgCostPerKG,
-									 "DimWeight"		=>	$dimWeight,
-									 "DimWeightKg"		=>	$dimWeightKg,
-									 "DimCostPerKG"		=>	$dimCostPerKG,
+									 "ShippingCost"		=>	$shippingCost,
 									 "CalShipCost"		=>	$calShipCost,
 									 "Color"			=>	$Color,
 									 "Size"				=>	$size,
 									 "PriceOffer"		=>	$priceOffer,
 									 "Price" 			=>  $price,
+									 "Tax" 				=>  $tax,
+									 "TaxSAR" 			=>  $taxSAR,
 									 "Image_url"		=>	$image_url,
 									 "IsPrime"			=>	$isPrime
 								);
@@ -209,16 +207,12 @@
 		
 		// shipping details
 		echo "<h3>Shipping Item details:</h3>";
-		echo "<li>Dimensions: L: {$productInfo['ItemLength']}  Width: {$productInfo['ItemWidth']} H: {$productInfo['ItemHeight']} Weight: {$productInfo['Weight']} <br>";
-		echo "<li>Dimensionsal weight: {$productInfo['DimWeight']} <br>";
-		echo "<li>Dimensionsal weight in KG: ". ($productInfo['DimWeightKg']) ."<br>";
-		echo "<li>Dim cost per 0.5 KG: ". ($productInfo['DimWeightKg']/0.5) ."x25= " .( ($productInfo['DimWeightKg']/0.5) * 25)." <br>";
 		echo "<li>Item Weight: {$productInfo['ItemWeight']}";
 		echo "<li>Item Weight in KG: {$productInfo['ItemWeightKg']}";
 		echo "<li>Item cost per 0.5 KG: ". ($productInfo['ItemWeightKg']/0.5) ."x25= " .( ($productInfo['ItemWeightKg']/0.5) * 25)." <br>";
 		
 		echo "<br><b>Suggested Shipping Cost:</b> Using {$productInfo['CalShipCost']} <br><br>";
-		
+		echo "<br><b>Shipping Cost:</b> Using {$productInfo['ShippingCost']} <br><br>";
 
 		echo "<li>Color: {$productInfo['Color']}";
 
@@ -230,7 +224,11 @@
 		echo "<li><B>ASIN :</B> {$productInfo['ASIN']}<br>";
 		echo "<br><img src=\"" . $productInfo['Image_url']  . "\" /><br>";
 		echo "<li>price \${$productInfo['Price']} and with offer {$productInfo['PriceOffer']} <br>";
+		echo "<li>Tax {$productInfo['Tax']}";
+		echo "<li>taxSAR {$productInfo['TaxSAR']}";
 		echo "<li>isPrime {$productInfo['IsPrime']} <br>";
+
+
 
 		
 	}		

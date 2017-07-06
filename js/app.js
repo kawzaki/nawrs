@@ -21,7 +21,8 @@ $( document ).ready(function() {
 	cart.itemsCost		= 0;
 	cart.shippingCost	= 0;
 	cart.invoiceCost	= 0;
-		
+	cart.itemsTax		= 0;
+
 	// get asin from URL
 	function getAsinFromUrl(url)
 	{
@@ -84,20 +85,17 @@ $( document ).ready(function() {
 			// convert USD to SAR
 			PriceSAR				= (parseFloat(json.Price,10) * 3.75).toFixed(1);
 			json.PriceSAR 			= PriceSAR;
+			json.TaxSAR				= (parseFloat(json.Tax,10) * 3.75).toFixed(1);
 			
 			// show fetched product info 
 			$(	"#prod_title"		).text(json.Title)
 			$(	"#prod_price"		).text(json.Price +"\nSAR"+ PriceSAR)
-			$(	"#prod_weight"		).text("المنتج: "+json.ItemWeight + " معلب " + json.PkgDimWeight )
-			$(	"#prod_dimensions"	).html(" المنتج: " +
-										json.ItemLength + "<b>x</b>"+ json.ItemHeight +"<b>x</b>"+ json.ItemWidth +
-										 "<br> معلب: " +
-										 json.Length + "<b>x</b>"+ json.Height +"<b>x</b>"+ json.Width
-										)
+			$(	"#prod_weight"		).text(json.PkgDimWeight )
+			$(	"#prod_dimensions"	).html(json.Length + "<b>x</b>"+ json.Height +"<b>x</b>"+ json.Width)
 			$(	"#prod_ASIN"		).text(json.ASIN)
 			$(	"#prod_color"		).text(json.Color)
 			$(	"#prod_size"		).text(json.Size)
-			$(	"#prod_shipping"	).text("المنتج: " + json.DimCostPerKG + " معلب: " + json.PkgCostPerKG)
+			$(	"#prod_shipping"	).text(json.ShippingCost)
 			$(	"#prod_img_url"		).attr('src', json.Image_url); 
 			$(	"#prod_info"		).slideDown();
 			// reset url input
@@ -117,13 +115,14 @@ $( document ).ready(function() {
 		var newItem = Object.assign({}, product); 
 		newItem.ID 		= Date.now();
 		
-		console.log( "product id: " + newItem.ID );
+		// console.log( "product id: " + newItem.ID );
 		newProduct = "<tr>"
 						+ "<td><img src=\""+ newItem.Image_url + "\" class=\"thumbnail\" /> </td>"
 						+ "<td>"+ newItem.Color			+"</td>"
 						+ "<td>"+ newItem.Size			+"</td>"
 						+ "<td>"+ newItem.PriceSAR		+" ريال</td>"						
-						+ "<td>"+ newItem.DimCostPerKG	+" ريال </td>"						
+						+ "<td>"+ newItem.TaxSAR		+" ريال</td>"						
+						+ "<td>"+ newItem.ShippingCost	+" ريال </td>"						
 						+ "<td> <i class='fi-x removeItem button warninng' id='"+ newItem.ID +"'></i></td>"
 						+ "</tr>";
 						
@@ -149,14 +148,17 @@ $( document ).ready(function() {
 		// items total cost
 		cart.itemsCost 	+= parseFloat(newItem.PriceSAR, 10);
 		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
+		
+		cart.itemsTax	+= parseFloat(newItem.TaxSAR, 10) ;
 		// console.log( cart.itemsCost)
 		
 		// items total shipping cost
-		cart.shippingCost 	+= parseFloat(newItem.DimCostPerKG, 10);
+		cart.shippingCost 	+= parseFloat(newItem.ShippingCost, 10);
 		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
 		// console.log( cart.totalCost)
 		
-		cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
+		// item tax
+		cart.invoiceCost	= cart.itemsCost + cart.shippingCost + cart.itemsTax;
 		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
 		
 		// update invoice
@@ -169,12 +171,12 @@ $( document ).ready(function() {
 	// update UI for cart and invoice
 	function removeFromInvoice( id ){
 			
-		console.log("finding :  " + id );
+		// console.log("finding :  " + id );
 		// find item from array
 		// this may not work in old browsers
 		item	=	cart.find(x => x.ID == id);
-		console.debug(item);
-		console.log("removing: " + id  + " its price is: "+ item.PriceSAR);
+		// console.debug(item);
+		// console.log("removing: " + id  + " its price is: "+ item.PriceSAR);
 		
 		// subtract price from total (decimal float)
 		// console.log( "totalCost = " + cart.totalCost +" -" + parseFloat(item.Price, 10));
@@ -188,9 +190,14 @@ $( document ).ready(function() {
 		// console.log( cart.itemsCost)
 		
 		// items total shipping cost
-		cart.shippingCost 	-= parseFloat(item.DimCostPerKG, 10);
+		cart.shippingCost 	-= parseFloat(item.ShippingCost, 10);
 		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
 		// console.log( cart.totalCost)
+		
+		
+		// item tax
+		cart.itemsTax 		-= parseFloat(item.TaxSAR, 10);
+		cart.itemsTax		= parseFloat(cart.itemsTax.toFixed(4)) ;
 		
 		cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
 		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
@@ -210,8 +217,8 @@ $( document ).ready(function() {
 		$("#itemsCount").html( cart.length);
 		$("#itemsCost").html( cart.itemsCost);
 		$("#shippingCost").html( cart.shippingCost);
-		$("#invoiceCost").html( cart.invoiceCost + " ريال");
-				
+		$("#invoiceTax").html( cart.itemsTax);
+		$("#invoiceCost").html( cart.invoiceCost + " ريال");				
 	}
 
 	// remove objects from array using search for value:
