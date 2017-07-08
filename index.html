@@ -7,6 +7,11 @@
     <title>الصفحة  الرئيسية</title>
     <link rel="stylesheet" href="css/foundation_rtl.css" />
     <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+	
+	<!-- Important Owl stylesheet -->
+	<link rel="stylesheet" href="js/vendor/owl-carousel/owl.carousel.css">
+	<link rel="stylesheet" href="js/vendor/owl-carousel/owl.transitions.css">
+	
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body class="tranquil">
@@ -18,8 +23,22 @@
 	</div>
 	
 	<!-- top bar -->
+	<div class="top-bar ">
+			<!-- login button : opens modal -->
+			<div class="top-bar-left">
+				<a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/>
+			</div>
+	</div>
+	
+	<!-- navigation bar -->
 	<div class="top-bar persiangreen">
-		<div class="large-10 columns  large-offset-1" >
+		<!-- logo -->
+		<div class="small-2 columns">
+			<p><img src="images/logo.png" alt="logo image"></p>
+		</div>
+
+		<!-- desktop menu -->
+		<div class="large-10 columns " >
 			<div class="top-bar-right" id="site-menu">
 				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
@@ -29,10 +48,6 @@
 				<li><a href="shipping-calculator.html">حساب التكلفة</a></li>
 				<li><a href="contact.html">اتصل بنا</a></li>
 				</ul>
-			</div>
-			<!-- login button : opens modal -->
-			<div class="top-bar-left">
-				<a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/>
 			</div>
 		</div>
 	</div>
@@ -73,25 +88,28 @@
 		<span aria-hidden="true">&times;</span>
 	  </button>
 	</div>	
+	
+	<!-- rotating images -->
+	<div class="container">
+		<div id="owl-homepage" class="owl-carousel owl-theme">
 
-	<!-- logo -->
-	<div class="row">
-	  <div class="small-2 small-centered large-6 large-centered columns">
-		<p><img src="images/logo.png" alt="logo image"></p>
-	  </div>
+		  <div class="item"><img src="images/slide1.jpg" alt="The Last of us"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/ffffff/000000?text=Sample" alt="The Last of us"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/b8b8b8/000cdc?text=Sample+2" alt="The Last of us"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/c4c4c4/cdc0000?text=Sample+3" alt="2"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/9a9a9a/0AFc0A?text=Sample+4" alt="3  Edge"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/3d3d3d/000000?text=Sample+5" alt="4 Edge"></div>
+		  <div class="item"><img src="http://placehold.it/1263x450/ffffff/d3d3d3?text=Sample+6" alt="5 Edge"></div>
+		 
+		</div>
 	</div>
-
-	<!-- breadcrumbs -->
-    <div class="row">
-		<ul class="large-12 column breadcrumb white">
-		  <li><a href="#" class="current"><i class="fi-home large"></i> الرئيسية</a></li>
-		</ul>	  
-    </div>
-
-	<!-- body: right side -->
+	
+	
+	<!-- body -->
     <div class="row"> 
       <div class="small-12 columns "  style="overflow: hidden; padding-right: 0px"> 
-		  <div class="tabspanel">
+		
+		<div class="tabspanel">
 			<img src="http://placehold.it/350x150">
 		 </div>
 		 
@@ -115,6 +133,7 @@
 
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
+	<script src="js/vendor/owl-carousel/owl.carousel.js"></script>	
     <script src="js/foundation.min.js"></script>
     <script src="js/app.js"></script>
   

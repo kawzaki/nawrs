@@ -90,6 +90,7 @@ $( document ).ready(function() {
 			// show fetched product info 
 			$(	"#prod_title"		).text(json.Title)
 			$(	"#prod_price"		).text(json.Price +"\nSAR"+ PriceSAR)
+			$(	"#prod_price_sar"	).text(PriceSAR)
 			$(	"#prod_weight"		).text(json.PkgDimWeight )
 			$(	"#prod_dimensions"	).html(json.Length + "<b>x</b>"+ json.Height +"<b>x</b>"+ json.Width)
 			$(	"#prod_ASIN"		).text(json.ASIN)
@@ -100,6 +101,7 @@ $( document ).ready(function() {
 			$(	"#prod_info"		).slideDown();
 			// reset url input
 			$("#prodcturl").val("");
+			$("#addToCartBtn").prop('disabled', false);
 			return product;
 			
 		  })
@@ -141,7 +143,7 @@ $( document ).ready(function() {
 	// update UI for cart and invoice
 	function addToInvoice( newItem ){
 		
-		console.log( "adding newItem: " + newItem.ID);
+		// console.log( "adding newItem: " + newItem.ID);
 		// add product to cart
 		cart.push(newItem);
 		
@@ -150,7 +152,7 @@ $( document ).ready(function() {
 		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
 		
 		cart.itemsTax	+= parseFloat(newItem.TaxSAR, 10) ;
-		// console.log( cart.itemsCost)
+		cart.itemsTax	= parseFloat(cart.itemsTax.toFixed(4)) ;
 		
 		// items total shipping cost
 		cart.shippingCost 	+= parseFloat(newItem.ShippingCost, 10);
@@ -169,45 +171,42 @@ $( document ).ready(function() {
 	
 		
 	// update UI for cart and invoice
-	function removeFromInvoice( id ){
+	function removeFromInvoice( id )
+	{
+
+			var item = {};
+			// console.log("finding :  " + id );
+			// find item from array. this may not work in old browsers
+			item				=	cart.find(x => x.ID == id);
 			
-		// console.log("finding :  " + id );
-		// find item from array
-		// this may not work in old browsers
-		item	=	cart.find(x => x.ID == id);
-		// console.debug(item);
-		// console.log("removing: " + id  + " its price is: "+ item.PriceSAR);
+			if( item === undefined) return;
+			
+			// subtract price from total (decimal float)
+			cart.totalCost 		-= parseFloat(item.PriceSAR, 10);
+			cart.totalCost		= parseFloat(cart.totalCost.toFixed(4));
+			
+			// items total cost
+			cart.itemsCost 		-= parseFloat(item.PriceSAR, 10);
+			cart.itemsCost		= parseFloat(cart.itemsCost.toFixed(4)) ;
+			
+			// items total shipping cost
+			cart.shippingCost 	-= parseFloat(item.ShippingCost, 10);
+			cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
+			
+			// item tax
+			cart.itemsTax 		-= parseFloat(item.TaxSAR, 10);
+			cart.itemsTax		= parseFloat(cart.itemsTax.toFixed(4)) ;
+			
+			cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
+			cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
+			
+			
+			// remove product from cart
+			cart.removeItem("ID", id)
+			
+			// update invoice
+			updateInvoice();
 		
-		// subtract price from total (decimal float)
-		// console.log( "totalCost = " + cart.totalCost +" -" + parseFloat(item.Price, 10));
-		cart.totalCost 	-= parseFloat(item.PriceSAR, 10);
-		cart.totalCost	= parseFloat(cart.totalCost.toFixed(4));
-		// console.log( "new totalCost: " - cart.totalCost)
-		
-		// items total cost
-		cart.itemsCost 	-= parseFloat(item.PriceSAR, 10);
-		cart.itemsCost	= parseFloat(cart.itemsCost.toFixed(4)) ;
-		// console.log( cart.itemsCost)
-		
-		// items total shipping cost
-		cart.shippingCost 	-= parseFloat(item.ShippingCost, 10);
-		cart.shippingCost	= parseFloat(cart.shippingCost.toFixed(4)) ;
-		// console.log( cart.totalCost)
-		
-		
-		// item tax
-		cart.itemsTax 		-= parseFloat(item.TaxSAR, 10);
-		cart.itemsTax		= parseFloat(cart.itemsTax.toFixed(4)) ;
-		
-		cart.invoiceCost	= cart.itemsCost + cart.shippingCost;
-		cart.invoiceCost	= parseFloat(cart.invoiceCost.toFixed(4));
-		
-		
-		// remove product from cart
-		cart.removeItem("ID", id)
-		
-		// update invoice
-		updateInvoice();
 	}
 
 	// 
