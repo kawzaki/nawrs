@@ -124,13 +124,13 @@
 							<img id="prod_img_url" src="http://placehold.it/150x150" class="thumbnail" />
 						</div>
 						<div class="small-12 large-9 column">
-							<h3 id="prod_title"> وصف المنتج في هذه الخانة</h3>
+							<h3 id="prod_title" class="text-left"> وصف المنتج في هذه الخانة</h3>
 							<div class="small-2 column"> 
-								<label> السعر: </label>  USD
+								<label> السعر بالدولار: </label>  
 								<span id="prod_price"></span>
 							</div>
 							<div class="small-2 column"> 
-								<label> السعر بالريال</label>  USD
+								<label> السعر بالريال:</label> 
 								<span id="prod_price_sar"></span>
 							</div>
 							<div class="small-2 column"> 
@@ -143,12 +143,12 @@
 							</div>
 							<div class="small-2 column"> 
 								<label> وزن الشحنة: </label> 
-								<span id="prod_weight" ></span> LB
+								<span id="prod_weight" ></span> باوند
 							</div>
 							<div class="small-2 column"> 
 								<label> تكلفة الشحن:  </label>
 								<span id="prod_shipping" ></span>
-								<span id="ASIN" ></span>SAR
+								<span id="ASIN" ></span>ريال
 							</div>
 							
 						</div>
@@ -217,6 +217,7 @@
 	</div>	
 
     <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/vendor/notify.min.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
     <script src="js/foundation.min.js"></script>

@@ -1,6 +1,15 @@
+/* font: Cario  */
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
 /* custom coloring classes */
-.persiangreen{
+.seagull{
 	background-color: #85BADA;
+}
+.cornflower{
+	background-color: #9BC7E0;
+}
+.wildwatermelon{
+	background-color: #FE526C;
 }
 .tranquil{
 	background-color: #E4E8E7;
@@ -15,13 +24,10 @@
 	background-color: #F6F6F6;
 }
 
-/* font: Nassim */
-@font-face{font-family:nassim;src:url(../fonts/nassim-regular.eot);src:url(../fonts/nassim-regular.eot?#) format("embedded-opentype"),url(../fonts/nassim-regular.woff) format("woff"),url(../fonts/nassim-regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:nassim;src:url(../fonts/nassim-bold.eot);src:url(../fonts/nassim-bold.eot?#) format("embedded-opentype"),url(../fonts/nassim-bold.woff) format("woff"),url(../fonts/nassim-bold.ttf) format("truetype");font-weight:700;font-style:normal}
-
 /* start override */
-body{direction:rtl;font:20px/1.5 nassim,Arial;background-color:#E4E8E7;color:#58595B}
+body{direction:rtl;font:20px/1.5 'Cairo',Arial;background-color:#E4E8E7;color:#58595B}
 h1,h2,h3,h4,h5,h6{
-	font-family: nassim;
+	font-family: 'Cairo';
 }
 
 /* override menu topbar */
@@ -156,97 +162,53 @@ h1,h2,h3,h4,h5,h6{
 		.breadcrumb li a:hover { background: #8F8C85; color: white; }
 		.breadcrumb li a:hover:after { border-right-color: #8F8C85 !important; }
 
+h1.frontpage{
+	color: #407996;
+}
 
+.rounded-bx{
+	border-radius: 0.3em;
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    border: 0px solid rgba(10, 10, 10, 0.25);
+    position: relative;
+	color: white;	
+}
+
+.numberCircle {
+    border-radius: 50%;
+
+    width: 60px;
+    height: 60px;
+     
+    border: 1px double #A9CDE3;
+	font-size: 120%;
+    color: white;
+    line-height: 45px;
+    text-align: center;
+    background: transparent;
+    box-shadow: 0px 0px 1px 1px #DFECF4; // JUST ADD THIS LINE AND MODIFY YOUR COLOR	
+}
+
+.rounded-bx h2{
+	color: #fff;
+}
+.rounded-bx header{
+	xborder-bottom: 1px double #D9EAF4;
+}
+
+	
+.down-arrow {
+    width: 0; 
+    height: 0; 
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 50px solid #85BADA;
+}
 		
-/* tabs  */
-.tabspanel{
-	border: 1px solid #d3d3d3;
-	border-radius: 6px;
-	padding: 0px;
-	margin-bottom: 20px;
+.socialmedia{
+	font-size: 50px;
 }
-.tabspanel article .qtitle, .details article .qstitle{
-	background: url(listitem.png) no-repeat 100% 5px;
-	padding-right: 20px;
-}
-/* this is the content panel */
-.tabs-panel{
-	padding: 0px;
-}
-.tabs-panel article, .details article, .tabspanel article{
-	padding: 15px 15px 1px 15px;
-}
-.tabs-panel article:nth-child(even), .details article:nth-child(even){
-	background: #F6F6F6;
-}
-.tabs-panel article p{
-	padding: 1px 15px 1px 1px;
-}
-
-/* QUESTION DETAILS */
-
-.details {
-	border: 1px solid #d3d3d3;
-	border-radius: 5px;
-	margin: 0 0 20px 0px;
-}
-
-.details .qtitle{
-	border-bottom: 1px solid #d3d3d3;
-	padding:0px;
-}
-
-.details article p.question{
-	background: url("listitem.png") no-repeat scroll 100% 25px transparent;
-	padding-right: 20px;
-	padding-top: 15px;
-}
-
-.details article p.answer{
-	padding-right: 20px;
-	color: #0B948A;
-	border-bottom: 1px solid #d3d3d3;
-}
-
-.details .action_buttons .button{
-	border-radius: 5px;
-	line-height: 0;
-	font-size: 95%;
-}
-
-.details .scoialmedia  , .details .scoialmedia a:link{
-	color: #d3d3d3;
-}
-.details fieldset{
-	padding: 5px;
-}
-
-.divider:before{
-	content: "|";
-	padding: 0px 5px;
-	text-decoration: none;
-}
-
-.tag{
-	border: 1px solid #d3d3d3;
-	border-radius: 5px;
-	line-height: 0px;
-	padding: 0 15px;
-}
-.questions_tags{
-	padding: 15px;
-	border-bottom: 1px solid #d3d3d3;
-}
-.questions_tags label{
-	font-size: 100%;
-	color: #05675A;
-}
-
-#frontpg-tabs{
-	background: #f6f6f6;
-	border: 0px none;	
-}
-
 .tabs-title > a {
     font-size: 20px;
     text-align: center;
