@@ -11,6 +11,9 @@
 .wildwatermelon{
 	background-color: #FE526C;
 }
+.silver{
+	background-color: #c1c1c1;
+}
 .tranquil{
 	background-color: #E4E8E7;
 }
@@ -32,10 +35,14 @@ h1,h2,h3,h4,h5,h6{
 
 /* override menu topbar */
 .top-bar ul{
-	background-color: #85BADA;	
+	background-color: transparent;	
 }
 .menu a, .menu a:visited{
-	color: #ECEEED;
+	color: #000;
+	font-size: 20px;
+}
+.menu a:hover{
+	color: #FE526C;
 	font-size: 20px;
 }
 
@@ -44,7 +51,7 @@ h1,h2,h3,h4,h5,h6{
 	font-size: 16px;
 }
 .top-bar li.active {
-	background: #367FA2;	
+	background: #367FA2;
 	height: 50px;
 }
 
@@ -79,89 +86,113 @@ h1,h2,h3,h4,h5,h6{
 	border-radius: 5px;
 }
 
-/* search div */
-.advancedsearch{
-	background: url(../images/advanced_search.jpg);
-}
-.search-icon {
-  background: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSAM1w3828CyPdQ-v_wYpT038oeH6vo5ODFL8PkPTVjcRu343pqnQ") no-repeat scroll 5px center white;
-}
+/***
+ * Breadcrumbs 
+ ***************************************************************/
 
-/* Breadcrumbs */
-
-		.breadcrumb { 
-			list-style: none; 
-			overflow: hidden; 
-			padding-right: 0px;
-			margin-right: 0px;
-			border:1px solid #d3d3d3;
-			border-radius: 5px;
-		}
-		.breadcrumb li { 
-			float: right; 
-		}
-		.breadcrumb li a {
-			color: #8F8C85;
-			text-decoration: none; 
-			padding: 10px 55px 10px 0;
-			background: brown;                   /* fallback color */
-			background: #F6F6F6; 
-			position: relative; 
-			display: block;
-			float: right;
-		}
-		.breadcrumb li a:after { 
-			content: " "; 
-			display: block; 
-			width: 0; 
-			height: 0;
-			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-			border-bottom: 50px solid transparent;
-			border-right: 30px solid #F6F6F6;
-			position: absolute;
-			top: 50%;
-			margin-top: -50px; 
-			right: 100%;
-			z-index: 2; 
-		}	
-		.breadcrumb li a:before { 
-			content: " "; 
-			display: block; 
-			width: 0; 
-			height: 0;
-			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-			border-bottom: 50px solid transparent;
-			border-right: 30px solid #d3d3d3;
-			position: absolute;
-			top: 50%;
-			margin-top: -50px; 
-			margin-right: 1px;
-			right: 100%;
-			z-index: 1; 
-		}	
-		.breadcrumb li:first-child a {
-			padding-right: 10px;
-		}
+.breadcrumb { 
+	list-style: none; 
+	overflow: hidden; 
+	padding-right: 0px;
+	margin-right: 0px;
+	border:1px solid #d3d3d3;
+	border-radius: 5px;
+}
+.breadcrumb li { 
+	float: right; 
+}
+.breadcrumb li a {
+	color: #8F8C85;
+	text-decoration: none; 
+	padding: 10px 55px 10px 0;
+	background: brown;                   /* fallback color */
+	background: #F6F6F6; 
+	position: relative; 
+	display: block;
+	float: right;
+}
+.breadcrumb li a:after { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-right: 30px solid #F6F6F6;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	right: 100%;
+	z-index: 2; 
+}	
+.breadcrumb li a:before { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-right: 30px solid #d3d3d3;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	margin-right: 1px;
+	right: 100%;
+	z-index: 1; 
+}	
+.breadcrumb li:first-child a {
+	padding-right: 10px;
+}
 /*		.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
-		.breadcrumb li:nth-child(2) a:after { border-right-color: hsla(34,85%,45%,1); }
-		.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
-		.breadcrumb li:nth-child(3) a:after { border-right-color: hsla(34,85%,55%,1); }
-		.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
-		.breadcrumb li:nth-child(4) a:after { border-right-color: hsla(34,85%,65%,1); }
-		.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
-		.breadcrumb li:nth-child(5) a:after { border-right-color: hsla(34,85%,75%,1); }
+.breadcrumb li:nth-child(2) a:after { border-right-color: hsla(34,85%,45%,1); }
+.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
+.breadcrumb li:nth-child(3) a:after { border-right-color: hsla(34,85%,55%,1); }
+.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
+.breadcrumb li:nth-child(4) a:after { border-right-color: hsla(34,85%,65%,1); }
+.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
+.breadcrumb li:nth-child(5) a:after { border-right-color: hsla(34,85%,75%,1); }
 */		.breadcrumb li:last-child a {
-			background: transparent !important;
-			color: black;
-			pointer-events: none;
-			cursor: default;
-			
-		}
-		.breadcrumb li:last-child a:after { border: 0; }
-		.breadcrumb li:last-child a:before { border: 0; }
-		.breadcrumb li a:hover { background: #8F8C85; color: white; }
-		.breadcrumb li a:hover:after { border-right-color: #8F8C85 !important; }
+	background: transparent !important;
+	color: black;
+	pointer-events: none;
+	cursor: default;
+	
+}
+.breadcrumb li:last-child a:after { border: 0; }
+.breadcrumb li:last-child a:before { border: 0; }
+.breadcrumb li a:hover { background: #8F8C85; color: white; }
+.breadcrumb li a:hover:after { border-right-color: #8F8C85 !important; }
 
+/***
+ * hero image 
+ *****************************************************************/
+.heroimage{
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	/* hide horizontal scrollbar on IE11 */
+	overflow: hidden;
+}
+
+.heroimage .slide1{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-image: url('../images/slide1.jpg');
+	background-size: cover;
+}
+
+#owl-homepage .item img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/***
+ * frontpage contents
+ *****************************************************************/
 h1.frontpage{
 	color: #407996;
 }
@@ -180,23 +211,29 @@ h1.frontpage{
 
     width: 60px;
     height: 60px;
-     
+    padding: 5px;
     border: 1px double #A9CDE3;
 	font-size: 120%;
     color: white;
-    line-height: 45px;
+    line-height: 50px;
     text-align: center;
     background: transparent;
-    box-shadow: 0px 0px 1px 1px #DFECF4; // JUST ADD THIS LINE AND MODIFY YOUR COLOR	
+    box-shadow: 0px 0px 1px 1px #DFECF4;
 }
 
 .rounded-bx h2{
 	color: #fff;
 }
-.rounded-bx header{
-	xborder-bottom: 1px double #D9EAF4;
-}
 
+.rounded-bx header h2:after {
+    content: "";
+    height: 1px;
+	background: linear-gradient(to right, rgb(155, 199, 224) 1%,rgba(147,147,147,0) 1%,rgba(255,255,255,1) 100%);
+				
+	display: block;
+	margin-bottom: 10px;
+    margin-top: 10px;
+}
 	
 .down-arrow {
     width: 0; 
@@ -209,43 +246,60 @@ h1.frontpage{
 .socialmedia{
 	font-size: 50px;
 }
-.tabs-title > a {
-    font-size: 20px;
-    text-align: center;
-	border-radius: 5px 5px 0 0;
-	color: #58595b;
+
+/*
+ * footer menu 
+ *********************************************************************************/
+footer ul {
+	font-size: 80%;
+	padding: 15px;
 }
 
-.tabs-title > a:hover, .tabs-title > a:focus, .tabs-title > a[aria-selected="true"] {
-    background: #fff none repeat scroll 0 0;
-}
-.tabs-title > a[aria-selected="false"] {
-    background: #f6f6f6 none repeat scroll 0 0;
-}
-.tabs-title.is-active{
-	border-bottom: 0px;
+footer > ul > li > ul {
+	display: block;
+	position: relative; right:0; top:0px;
+	margin-right: 0px;
+	padding-right: 0;
 }
 
-.tabs-content{
-	background: #fff;
-	border: 0px none;	
+footer  ul li {
+	float:right;
+	margin-top:0px;
+	padding:0px; 
+	width:180px;
+	display: block;
+
 }
 
-.sidepanel{
-	border: 1px solid #d3d3d3;
-	border-radius: 6px;
-	padding: 0px;
+ul ul li:before {
+	content: "> ";
+	color: #c1c1c1;
+	font-weight: bold;
+	font-size: 100%;
+}
+footer ul a {
+	color: #c1c1c1;
+	text-align:right;
+	display:inline;
+	margin:0;
+	padding:0 0px;
 }
 
-.sidepanel .title, .tabspanel .title{
-	font: 20px/1.5 nassim,Arial;
-	background: #f6f6f6;
-	text-align: center;
-	height: 60px;
-	padding:1.25rem 1.5rem;
-	border-bottom: 1px solid #d3d3d3;
+
+footer ul a:hover, #footer_links ul a:active
+{
+	background:transparent;
+	color:#E08125;
 }
 
+/* make shover button white */
+footer li.sfhover > a
+{
+	color:#ffffff;
+}
+
+
+ 
 .stats{
 	color: #B4B2B3;
 	font-size: 90%;
@@ -288,12 +342,6 @@ a.btn{
 
 a.btn:hover{
 	color: red;
-}
-
-/* question form */
-.tabspanel form input, .tabspanel form textarea, .tabspanel form select{
-	border: 1px solid #d3d3d3;
-	border-radius: 5px;
 }
 
 /* amazon-steps */

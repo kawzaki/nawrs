@@ -4,15 +4,21 @@ var mycart;
 $( document ).ready(function() {	
 
 	// homepage slider
-	// $("#owl-homepage").owlCarousel({
+	if( $("#owl-homepage") )
+	{
+		$("#owl-homepage").owlCarousel({
 
-	  // navigation : false, // Show next and prev buttons
-	  // slideSpeed : 300,
-	  // paginationSpeed : 400,
-	  // singleItem:true,
-	  // transitionStyle : "backSlide",
-	  // autoPlay: true
-	// });
+
+		  navigation : false, // Show next and prev buttons
+		  slideSpeed : 300,
+		  paginationSpeed : 400,
+		  singleItem:true,
+		  transitionStyle : "backSlide",
+		  autoPlay: true
+		  // itemsTablet: false,
+		  // itemsMobile : false 
+		});
+	}
 
 
 	// global vars
@@ -56,6 +62,10 @@ $( document ).ready(function() {
 			// update invoice
 			removeFromInvoice( event.target.id );
 			
+			// save cart
+			saveCart("remove", event.target.id);
+						
+			
 			var tr = $(this).closest('tr');
 			tr.css("background-color","#FF3700");
 			tr.fadeOut(400, function(){
@@ -89,7 +99,7 @@ $( document ).ready(function() {
 			
 			// show fetched product info 
 			$(	"#prod_title"		).text(json.Title)
-			$(	"#prod_price"		).text(json.Price +"\nSAR"+ PriceSAR)
+			$(	"#prod_price"		).text(json.Price)
 			$(	"#prod_price_sar"	).text(PriceSAR)
 			$(	"#prod_weight"		).text(json.PkgDimWeight )
 			$(	"#prod_dimensions"	).html(json.Length + "<b>x</b>"+ json.Height +"<b>x</b>"+ json.Width)
@@ -114,6 +124,10 @@ $( document ).ready(function() {
 	// add product to cart
 	function addToCart()
 	{
+		// avoid adding to cart before the item info is fetched
+		// if( product.ASIN === undefined) return ;
+		if( product === undefined) return ;
+		
 		var newItem = Object.assign({}, product); 
 		newItem.ID 		= Date.now();
 		
@@ -132,6 +146,9 @@ $( document ).ready(function() {
 		$("#addToCartBtn").notify("تم إضافته لسلة المشتريات", {className:"success"});
 		$("#itemsList").slideDown();
 		
+		// save cart
+		saveCart("add", newItem.ID);
+		
 		// start observer for remove from cart button
 		observeRemoveBtn();
 		
@@ -139,6 +156,31 @@ $( document ).ready(function() {
 		addToInvoice(newItem);
 	}
 	
+	
+	// store in cart table
+	function saveCart(command, ASIN)
+	{
+		if (typeof $.cookie('mycart') === 'undefined')
+		{
+		 //no cookie
+		 // create session id for the shopping cart
+		 cartid 	= "cust-" + Date.now();
+		 $.cookie('mycart', cartid, { expires: 7 });
+		} 
+		else
+			cartid = $.cookie("mycart");
+
+		// send to server
+		$.post( "data/cart.php", { mycart: cartid, asin: ASIN, cmd: command } )
+				  .done(function( data ) {
+					console.log(data);
+				  })
+				  .fail(function( jqxhr, textStatus, error ) {
+					var err = textStatus + ", " + error;
+					console.log( "failed saving cart: " + err );
+				});		
+		
+	}
 
 	// update UI for cart and invoice
 	function addToInvoice( newItem ){
