@@ -1,42 +1,37 @@
 <!doctype html>
-<html class="no-js" dir="ltr" lang="ar">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الصفحة  الرئيسية</title>
-    <link rel="stylesheet" href="css/foundation_rtl.css" />
-    <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
-	
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body class="tranquil">
+<html class="no-js" dir="rtl" lang="ar">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>الصفحة الرئيسية </title>
+		
+		<link rel="stylesheet" href="css/foundation_rtl.css" />
+		<link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+		
+		<!-- Important Owl stylesheet -->
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.carousel.css">
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.transitions.css">
 
-  	<!-- mobile menu -->
-	<div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+		<!-- Default Theme -->
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.theme.css">
+	
+		<link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body class="tranquil">
+
+	<!-- mobile menu -->
+	<div class="title-bar persiangreen" data-responsive-toggle="site-menu" data-hide-for="large">
 		<button class="menu-icon" type="button" data-toggle></button>
-		<div class="title-bar-title">قائمة الموقع</div>
+		<div class="title-bar-title">القائمة</div>
 	</div>
 	
 	<!-- top bar -->
-	<div class="top-bar ">
-			<!-- login button : opens modal -->
-			<div class="top-bar-left">
-				<a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/>
-			</div>
-	</div>
-	
-	<!-- navigation bar -->
-	<div class="top-bar persiangreen">
-		<!-- logo -->
-		<div class="small-2 columns">
-			<p><img src="images/logo.png" alt="logo image"></p>
-		</div>
-
+	<div class="top-bar persiangreen" id="site-menu">
 		<!-- desktop menu -->
-		<div class="large-9 large-offset-1 columns " >
+		<div class="large-10 columns  large-offset-1">
 			<div class="top-bar-right" id="site-menu">
-				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
+				<ul class="vertical large-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
 				<li><a href="amazon-order.html">اطلب الآن</a></li>
 				<li><a href="how-we-work.html">طريقة الشراء</a></li>
@@ -44,84 +39,301 @@
 				<li><a href="shipping-calculator.html">حساب التكلفة</a></li>
 				<li><a href="contact.html">اتصل بنا</a></li>
 				</ul>
+
+			</div>
+			<!-- login button : opens modal -->
+			<div class="top-bar-left">
+				<a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- login modal -->
 	<div class="reveal tiny" id="loginModal" data-reveal>
 	  
-	  <div class="title dblSpanishWhite" > 
-	  <i class="fi-torso large"></i>
-	  تسجيل الدخول 
-	  </div>
+		<div class="title dblSpanishWhite" > 
+		<i class="fi-torso large"></i>
+			تسجيل الدخول 
+		</div>
 	  
- 	  <div style="padding: 15px;">
-		<form>
-		  <div class="row">
-			<div class="large-12 columns">
-				<input type="text"  placeholder="اسم المستخدم" />
-			</div>
-			<div class="large-12 columns">
-				<input type="text"  placeholder="كلمة السر" />
-			</div>
-			<div class="large-12 columns">
-				<input type="checkbox"  placeholder="حفظ البيانات" />
-				حفظ البيانات
-			</div>
-			<div class="large-12 columns">
-				<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
-			</div>
-		  </div>
-	    </form>
-	  </div>  
+		<div style="padding: 15px;">
+			<form>
+			  <div class="row">
+				<div class="large-12 columns">
+					<input type="text"  placeholder="اسم المستخدم" />
+				</div>
+				<div class="large-12 columns">
+					<input type="text"  placeholder="كلمة السر" />
+				</div>
+				<div class="large-12 columns">
+					<input type="checkbox"  placeholder="حفظ البيانات" />
+					حفظ البيانات
+				</div>
+				<div class="large-12 columns">
+					<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
+				</div>
+			  </div>
+			</form>
+		</div>  
 	  
-	  <div style="background: #E4F6F6; padding: 15px; ">
-		<a href="#">استرجاع كلمة السر</a> <br />
-		ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
-	  </div>
-	  <button class="close-button" data-close aria-label="Close reveal" type="button">
-		<span aria-hidden="true">&times;</span>
-	  </button>
+		<div style="background: #E4F6F6; padding: 15px; ">
+			<a href="#">استرجاع كلمة السر</a> <br />
+			ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
+		</div>
+		<button class="close-button" data-close aria-label="Close reveal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>	
 	
+	<!-- hero image -->
+	<div class="row expanded" style="direction: ltr">
+		<!-- rotating images -->
+		<div id="owl-homepage" class="owl-carousel owl-theme" xstyle="height: 75vh">
+        
+			<!-- considering the following break points: 
+				1080 (desktop 1263 x 480) , HD (3200 x 1600)
+				640  (tablet 960 x 480 ), HD ( 1920 x 980 )
+				-- less which includes 480 and 320
+				360 (SD 400x360) , HD (800 x 720)
+			-->
+			
+			<!-- testing dummy image -->
+			<picture>
+			  <!--[if IE 9]><video style="display: none;"><![endif]-->
+			  <source 
+				media="(min-width: 1080px)"
+				srcset="images/desktop1263x480.jpg 1x, images/desktophd3200x1600.jpg 2x"  
+				style="min-height: 80vh;"
+			  />
+			  
+			  <source 
+				media="(min-width: 640px)" 
+				srcset="images/tablet960x480.jpg 1x, images/tablethd1920x980.jpg 2x" 
+			  />
+			  
+			  <!--[if IE 9]></video><![endif]-->
+			  <img srcset="images/smallsecreen400x360.jpg 1x, images/smallsecreenhd80x720.jpg 2x">
+			</picture>
+
+			<!-- testing slide2 image -->
+			<picture>
+			  <!--[if IE 9]><video style="display: none;"><![endif]-->
+			  <source 
+				media="(min-width: 1080px)"
+				srcset="images/s2_desktop.jpg 1x, images/s2_desktop2x.jpg 2x"  
+				style="min-height: 80vh;"
+			  />
+			  
+			  <source 
+				media="(min-width: 640px)" 
+				srcset="images/s2_tablet.jpg 1x, images/s2_tablet2x.jpg 2x" 
+			  />
+			  
+			  <!--[if IE 9]></video><![endif]-->
+			  <img srcset="images/s2_smallscreen.jpg 1x, images/s2_smallscreen2x.jpg 2x">
+			</picture>
+
+		</div>
+	</div>
 	
-	<!-- body -->
-    <div class="row"> 
-      <div class="small-12 columns "  style="overflow: hidden; padding-right: 0px"> 
+	<!-- frontpage contents -->
+	<div class="row expanded seagull" data-equalizer="3t">
 		
-		<div class="tabspanel">
-			<img src="http://placehold.it/350x150">
-		 </div>
-		 
-		 <div class="tabspanel">
-			<img src="http://placehold.it/550x150">
-		 </div>
-	 </div>
-	 
-	 <div class="small-4 columns white column-block">1</div>
-	 <div class="small-4 columns white column-block">2</div>
-	 <div class="small-4 columns">3</div>
-	 <div class="small-4 columns">4</div>
+		<div class="small-12 columns hide">
+			Browser Size:<br>
+			<div id="size"></div>
+			<br><br>
+			Screen Size
+			<div id="size2"></div>
+</div>
+		<br />
+		<div class="small-12 columns text-center">
+			<h1 class="frontpage">كيف نعمل؟</h1>
+		</div>
+			
+		<div class="small-12 medium-5 medium-offset-1 columns collapse">      
+				<article class="cornflower rounded-bx text-white">
+					<header>
+						<h2><i class="fi-shopping-cart" aria-hidden="true"></i> تسوق <span class="numberCircle float-left">1</h2>
+					</header>
+					<section data-equalizer-watch="3t">
+						<p>
+						تصفح موقع أمازون برايم لاستعراض المنتجات، وما أن تقرر الشراء
+						يمكنك نسخ رابط المنتج 
+						</p>
+					</section>
+				</article>	
+		</div>
+
+
+		<div class="small-12 medium-5 columns">
+			
+			<article class="cornflower rounded-bx text-white">
+				<header>
+					<h2><i class="fi-download" aria-hidden="true"></i> أضف المنتج <span class="numberCircle float-left">2</h2>
+				</header>
+				<section data-equalizer-watch="3t">
+					<p>
+						افتح صفحة طلب الشراء، وألصق 
+						رابط المنتج في الاستمارة، سيتم جلب المعلومات بطريقة تلقائية. 
+
+					</p>
+				</section>
+			</article>	
+			
+		</div>		
+		
+		<div class="small-12 medium-5 medium-offset-1 columns collapse">
+		
+			<article class="cornflower rounded-bx text-white">
+				<header>
+					<h2><i class="fi-credit-card" aria-hidden="true"></i>   إدفع<span class="numberCircle float-left">3</h2>
+				</header>
+				<section data-equalizer-watch="3t">
+					<p>
+						أكمل عملية الشراء باستخدام  بطاقتك الأئتمانية، او الدفع عن طريق سداد
+					</p>
+				</section>
+			</article>	
+		</div>
+
+		<div class="small-12 medium-5  columns end ">
+
+			<article class="cornflower rounded-bx text-white">
+				<header>
+					<h2><i class="fi-shopping-bag" aria-hidden="true"></i> شحن<span class="numberCircle float-left">4</h2>
+				</header>
+				<section data-equalizer-watch="3t">
+					<p>
+						تتبع الشحنة من خلال صفحتك بالموقع، وانتظر وصولها خلال 7 أيام عمل
+					</p>
+				</section>
+			</article>	
+			
+		</div>
+		
+	</div>
+	
+	<!-- downarrow -->
+	<div class="row expanded ">
+		<div class="small-1 columns small-centered">
+			<div class="down-arrow "></div>
+		</div>
+	</div>	
+		
+	<!-- after frontpage contents -->
+    <div class="row"> 
+		<!--  right side -->
+		<div class="small-5 large-6 columns"  >      
+			<div class="text-center" >
+				<h1>تسوق وأشحن الآن</h1>
+				<a class="button wildwatermelon" href="amazon-order.html">ابدأ من هنا</a>
+			</div>
+		</div>
+
+		<!--  left side -->
+		<div class="small-5 large-6 columns">
+			<img src="images/buy-gifts.png" alt="" />
+		</div>
+		<p>&nbsp;</p>
     </div>
 
-	
-	<!-- footer -->
-	<div class="fixed-bottom ">
-		<nav class="top-bar bottom-bar dblSpanishWhite">
-			<div class="row">
-				<div class="medium-6 column">
-					شركة النورس لإعادة الشحن 2017م &copy;
+	<!-- social media and newsletter -->
+    <div class="row expanded callout small"> 
+		<!--  right side -->
+		<div class="small-12 large-6 columns"  >      
+			
+				<!-- social media icons and links -->
+				<div class="small-12 column text-center socialmedia">					
+					<a href="facebook.com#"><i class="fi-social-youtube   large" aria-hidden="true"></i></a>
+					<a href="facebook.com#"><i class="fi-social-instagram large" aria-hidden="true"></i></a>
+					<a href="facebook.com#"><i class="fi-social-twitter   large" aria-hidden="true"></i></a>
+					<a href="facebook.com#"><i class="fi-social-facebook  large" aria-hidden="true"></i></a>
 				</div>
-			</div>
-		</nav>
-	</div>	
+			
+		</div>
+
+		<!--  left side -->
+		<div class="small-12 large-6 columns">
+			<form action="">
+						<input type="" placeholder="النشرة البريدية "/>
+						<button class="button">
+							اشترك الآن
+						</button>
+			</form>
+		</div>
+
+    </div>
+
+	<div class="row">
+	<div class="column">
+
+	<!-- footer starts here -->
+	<footer>
+	
+		<ul class="ittsc-menuv sortable-list" id="ittsc-menu2">
+			<li>عن الموقع
+			<ul>
+				<li><a href="demo">من نحن</a> </li>
+				<li><a href="sec36.html">اتصل بنا</a> </li>
+			</ul>
+			</li>
+			<li>اشحن معنا
+			<ul>
+				<li><a href="demo">كيف نعمل</a> </li>
+				<li><a href="sec36.html">اطلب الآن</a> </li>
+				<li><a href="sec36.html">حساب التكلفة</a> </li>
+			</ul>
+			</li>
+			<li class="sfhover">خدمة الأعضاء
+			<ul>
+				<li><a href="demo">تسجيل دخول</a> </li>
+				<li><a href="sec36.html">متابعة الطلبات</a> </li>
+				<li><a href="sec36.html">تعديل معلومات</a> </li>
+			</ul>
+			</li>
+			<li>الدعم والمساعدة
+				<ul>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">اسئلة متكررة</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">الشروط والأحكام</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec8.html">طلب دعم</a> </li>
+				</ul>
+			</li>
+			<li ><a href="#">وظائف شاغرة </a> </li>
+		</ul>
+		<!-- E N D  M E N U V-->	
+	</footer>	
+			
+	</div>
+	</div>
+
+	<br> &nbsp;
+	
+	<div class="row expanded silver top-bar">
+		<div class="small-12 column text-center">
+
+				وكالة النورس للشحن 2017م &copy;
+		</div>
+	</div>
+
 
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
-	<script src="js/vendor/owl-carousel/owl.carousel.js"></script>	
     <script src="js/foundation.min.js"></script>
+	<script src="js/vendor/owl-carousel/owl.carousel.js"></script>
     <script src="js/app.js"></script>
+  
+<script>
+		$(window).on('resize', showSize);
+
+		//showSize();
+
+		function showSize() 
+		{
+			$('#size').html('HEIGHT : '+$(window).height()+'<br>WIDTH : '+$(window).width());
+			$('#size2').html('HEIGHT : '+screen.height+'<br>WIDTH : '+screen.width);
+		}
+</script>	
   
   </body>
 </html>

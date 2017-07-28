@@ -27,6 +27,10 @@
 	background-color: #F6F6F6;
 }
 
+/* workaround for bug 
+https://stackoverflow.com/questions/38102235/foundation-6-nesting-default-width-row-inside-expanded-row
+*/
+
 /* start override */
 body{direction:rtl;font:20px/1.5 'Cairo',Arial;background-color:#E4E8E7;color:#58595B}
 h1,h2,h3,h4,h5,h6{
@@ -87,83 +91,6 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /***
- * Breadcrumbs 
- ***************************************************************/
-
-.breadcrumb { 
-	list-style: none; 
-	overflow: hidden; 
-	padding-right: 0px;
-	margin-right: 0px;
-	border:1px solid #d3d3d3;
-	border-radius: 5px;
-}
-.breadcrumb li { 
-	float: right; 
-}
-.breadcrumb li a {
-	color: #8F8C85;
-	text-decoration: none; 
-	padding: 10px 55px 10px 0;
-	background: brown;                   /* fallback color */
-	background: #F6F6F6; 
-	position: relative; 
-	display: block;
-	float: right;
-}
-.breadcrumb li a:after { 
-	content: " "; 
-	display: block; 
-	width: 0; 
-	height: 0;
-	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-	border-bottom: 50px solid transparent;
-	border-right: 30px solid #F6F6F6;
-	position: absolute;
-	top: 50%;
-	margin-top: -50px; 
-	right: 100%;
-	z-index: 2; 
-}	
-.breadcrumb li a:before { 
-	content: " "; 
-	display: block; 
-	width: 0; 
-	height: 0;
-	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
-	border-bottom: 50px solid transparent;
-	border-right: 30px solid #d3d3d3;
-	position: absolute;
-	top: 50%;
-	margin-top: -50px; 
-	margin-right: 1px;
-	right: 100%;
-	z-index: 1; 
-}	
-.breadcrumb li:first-child a {
-	padding-right: 10px;
-}
-/*		.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
-.breadcrumb li:nth-child(2) a:after { border-right-color: hsla(34,85%,45%,1); }
-.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
-.breadcrumb li:nth-child(3) a:after { border-right-color: hsla(34,85%,55%,1); }
-.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
-.breadcrumb li:nth-child(4) a:after { border-right-color: hsla(34,85%,65%,1); }
-.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
-.breadcrumb li:nth-child(5) a:after { border-right-color: hsla(34,85%,75%,1); }
-*/		.breadcrumb li:last-child a {
-	background: transparent !important;
-	color: black;
-	pointer-events: none;
-	cursor: default;
-	
-}
-.breadcrumb li:last-child a:after { border: 0; }
-.breadcrumb li:last-child a:before { border: 0; }
-.breadcrumb li a:hover { background: #8F8C85; color: white; }
-.breadcrumb li a:hover:after { border-right-color: #8F8C85 !important; }
-
-/***
  * hero image 
  *****************************************************************/
 .heroimage{
@@ -190,10 +117,16 @@ h1,h2,h3,h4,h5,h6{
 	height: auto;
 }
 
+owl-controls{
+	position: relative;
+	top: -40px;
+}
+
+
 /***
  * frontpage contents
  *****************************************************************/
-h1.frontpage{
+ h1.frontpage{
 	color: #407996;
 }
 
@@ -242,7 +175,47 @@ h1.frontpage{
     border-right: 50px solid transparent;
     border-top: 50px solid #85BADA;
 }
-		
+
+/**
+ * amazon-order page style
+ ******/
+#prod_info label{
+	color: #d3d3d3;
+	margin-bottom: 10px;
+}
+#prod_info span{
+	border: 1px solid #d3d3d3;
+	border-radius: 3px;
+	padding: 0px 10px;
+}
+
+/**	invoice **/
+#itemsList span{
+	width: 55px;
+}
+thead, tfoot{
+	color: #666666;
+}
+[type="text"], [type="password"], input ,.button{
+	border-radius: 3px;
+}
+
+.invoice{
+	padding: 0px;
+}
+.invoice .title{
+	color: white;
+	padding: 5px;
+}
+
+.invoice .invoiceCost{
+	color: #FE526C;
+	padding: 5px;
+	border-bottom: 1px solid #d3d3d3;
+	font-size: 130%;
+	font-weight: bold;	
+}
+
 .socialmedia{
 	font-size: 50px;
 }
@@ -349,42 +322,55 @@ a.btn:hover{
     margin-right: 0;
     overflow: hidden;
     padding: 10px;
+	height: 80px;
 }
 	.amazon-steps li{
-	  width: 7em;
+	  width: 2em;
 	  height: 2em;
 	  text-align: center;
 	  line-height: 2em;
 	  border-radius: 1em;
-	  background: dodgerblue;
-	  margin: 0 1em;
+	  border: 2px solid white;
+	  margin: 0 4em;
 	  display: inline-block;
 	  color: white;
 	  position: relative;
+	}
+	
+	.amazon-steps li	span{
+		position: absolute;
+		top: 35px;
+		right: -1px;
+		font-size: smaller;
+	}
+	
+	.amazon-steps li	span::after{
+		content: ' ';
+		display: table;
 	}
 	
 	.amazon-steps li::before{
 	  content: '';
 	  position: absolute;
 	  top: .9em;
-	  right: -2.2em;
-	  width: 2.3em;
+	  right: -166px;
+	  width: 8.3em;
 	  height: .2em;
-	  background: dodgerblue;
+	  background: white;
 	  z-index: 1;
 	}
-
 
 	.amazon-steps li:first-child::before {
 	  display: none;
 	}
 
 	.amazon-steps li.active {
-	  background: dodgerblue;
+	  /*background: dodgerblue;*/
 	}
 
 	.amazon-steps .active ~ li {
-	  background: lightblue;
+	  border-color: lightblue;
+	  color: lightblue;
 	}
 
 	.amazon-steps .active ~ li::before {

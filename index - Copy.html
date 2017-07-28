@@ -21,7 +21,7 @@
 	<body class="tranquil">
 
 	<!-- mobile menu -->
-	<div class="title-bar persiangreen" data-responsive-toggle="site-menu" data-hide-for="medium">
+	<div class="title-bar persiangreen" data-responsive-toggle="site-menu" data-hide-for="large">
 		<button class="menu-icon" type="button" data-toggle></button>
 		<div class="title-bar-title">القائمة</div>
 	</div>
@@ -31,7 +31,7 @@
 		<!-- desktop menu -->
 		<div class="large-10 columns  large-offset-1">
 			<div class="top-bar-right" id="site-menu">
-				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
+				<ul class="vertical large-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
 				<li><a href="amazon-order.html">اطلب الآن</a></li>
 				<li><a href="how-we-work.html">طريقة الشراء</a></li>
@@ -89,14 +89,72 @@
 	<div class="row expanded" style="direction: ltr">
 		<!-- rotating images -->
 		<div id="owl-homepage" class="owl-carousel owl-theme" style="height: 100vh">
-		  <div class="item" style="background-image: url('images/slide1.png'); min-height: 80vh; background-position: top center;background-repeat: no-repeat;"></div>	 
-		  <div class="item" style="background-image: url('images/slide2.png'); min-height: 80vh; background-position: top center;background-repeat: no-repeat;"></div>	 
+        
+			<!-- considering the following break points: 
+				1080 (desktop 1263 x 480) , HD (3200 x 1600)
+				640  (tablet 960 x 480 ), HD ( 1920 x 980 )
+				-- less which includes 480 and 320
+				360 (SD 400x360) , HD (800 x 720)
+			-->
+			
+			<!-- testing dummy image -->
+			<picture>
+			  <!--[if IE 9]><video style="display: none;"><![endif]-->
+			  <source 
+				media="(min-width: 1080px)"
+				srcset="images/s1_large1263.png 1x, images/s1_large1263.png 2x"  
+				style="min-height: 80vh;"
+			  />
+			  
+			  <source 
+				media="(min-width: 640px)" 
+				srcset="images/s1_medium1x.jpg 1x, images/s1_medium480HD.jpg 2x" 
+			  />
+			  
+			  <!--[if IE 9]></video><![endif]-->
+			  <img srcset="images/s1_small480.png 1x, images/s1_small360HD.png 2x">
+			</picture>
+
+			<!-- testing slide2 image -->
+			<picture>
+			  <!--[if IE 9]><video style="display: none;"><![endif]-->
+			  <source 
+				media="(min-width: 1080px)"
+				srcset="images/s2_large1x.png 1x, images/s2_large2x.png 2x"  
+				style="min-height: 80vh;"
+			  />
+			  
+			  <source 
+				media="(min-width: 640px)" 
+				srcset="images/s2_medium1x.png 1x, images/s2_medium2x.png 2x" 
+			  />
+			  
+			  <!--[if IE 9]></video><![endif]-->
+			  <img srcset="images/s2_small1x.png 1x, images/s2_small2x.png 2x">
+			</picture>
+
+			<!-- shopify image -->
+			<picture>
+			  <!--[if IE 9]><video style="display: none;"><![endif]-->
+			  <source srcset="images/desktop1x.jpg 1x, images/desktop2x.jpg 2x" media="(min-width: 1080px)"/>
+			  <source srcset="images/tablet1x.jpg 1x, images/tablet2x.jpg 2x" media="(min-width: 750px)" />
+			  <!--[if IE 9]></video><![endif]-->
+			  <img srcset="images/mobile1x.jpg 1x, images/mobile2x.jpg 2x" alt="" class="">
+			</picture>
+
 		</div>
 	</div>
 	
 	<!-- frontpage contents -->
 	<div class="row expanded seagull" data-equalizer="3t">
 		
+		<div class="small-12 columns">
+			Browser Size:<br>
+			<div id="size"></div>
+			<br><br>
+			Screen Size
+			<div id="size2"></div>
+</div>
 		<br />
 		<div class="small-12 columns text-center">
 			<h1 class="frontpage">كيف نعمل؟</h1>
@@ -273,6 +331,18 @@
     <script src="js/foundation.min.js"></script>
 	<script src="js/vendor/owl-carousel/owl.carousel.js"></script>
     <script src="js/app.js"></script>
+  
+<script>
+		$(window).on('resize', showSize);
+
+		showSize();
+
+		function showSize() 
+		{
+			$('#size').html('HEIGHT : '+$(window).height()+'<br>WIDTH : '+$(window).width());
+			$('#size2').html('HEIGHT : '+screen.height+'<br>WIDTH : '+screen.width);
+		}
+</script>	
   
   </body>
 </html>

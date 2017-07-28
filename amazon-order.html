@@ -1,25 +1,35 @@
 <!doctype html>
 <html class="no-js" dir="rtl" lang="ar">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الشراء من أمازون</title>
-    <link rel="stylesheet" href="css/foundation_rtl.css" />
-    <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body class="tranquil">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>الشراء من أمازون </title>
+		
+		<link rel="stylesheet" href="css/foundation_rtl.css" />
+		<link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+		
+		<!-- Important Owl stylesheet -->
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.carousel.css">
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.transitions.css">
 
-  	<!-- mobile menu -->
-	<div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+		<!-- Default Theme -->
+		<link rel="stylesheet" href="js/vendor/owl-carousel/owl.theme.css">
+	
+		<link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body class="tranquil">
+
+	<!-- mobile menu -->
+	<div class="title-bar persiangreen" data-responsive-toggle="site-menu" data-hide-for="medium">
 		<button class="menu-icon" type="button" data-toggle></button>
-		<div class="title-bar-title">قائمة الموقع</div>
+		<div class="title-bar-title">القائمة</div>
 	</div>
 	
 	<!-- top bar -->
-	<div class="top-bar persiangreen">
-		<div class="large-10 columns  large-offset-1" >
+	<div class="top-bar persiangreen" id="site-menu">
+		<!-- desktop menu -->
+		<div class="large-10 columns  large-offset-1">
 			<div class="top-bar-right" id="site-menu">
 				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
@@ -29,6 +39,7 @@
 				<li><a href="shipping-calculator.html">حساب التكلفة</a></li>
 				<li><a href="contact.html">اتصل بنا</a></li>
 				</ul>
+
 			</div>
 			<!-- login button : opens modal -->
 			<div class="top-bar-left">
@@ -36,78 +47,73 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
 	<!-- login modal -->
 	<div class="reveal tiny" id="loginModal" data-reveal>
 	  
-	  <div class="title dblSpanishWhite" > 
-	  <i class="fi-torso large"></i>
-	  تسجيل الدخول 
-	  </div>
+		<div class="title dblSpanishWhite" > 
+		<i class="fi-torso large"></i>
+			تسجيل الدخول 
+		</div>
 	  
- 	  <div style="padding: 15px;">
-		<form>
-		  <div class="row">
-			<div class="large-12 columns">
-				<input type="text"  placeholder="اسم المستخدم" />
-			</div>
-			<div class="large-12 columns">
-				<input type="text"  placeholder="كلمة السر" />
-			</div>
-			<div class="large-12 columns">
-				<input type="checkbox"  placeholder="حفظ البيانات" />
-				حفظ البيانات
-			</div>
-			<div class="large-12 columns">
-				<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
-			</div>
-		  </div>
-	    </form>
-	  </div>  
+		<div style="padding: 15px;">
+			<form>
+			  <div class="row">
+				<div class="large-12 columns">
+					<input type="text"  placeholder="اسم المستخدم" />
+				</div>
+				<div class="large-12 columns">
+					<input type="text"  placeholder="كلمة السر" />
+				</div>
+				<div class="large-12 columns">
+					<input type="checkbox"  placeholder="حفظ البيانات" />
+					حفظ البيانات
+				</div>
+				<div class="large-12 columns">
+					<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
+				</div>
+			  </div>
+			</form>
+		</div>  
 	  
-	  <div style="background: #E4F6F6; padding: 15px; ">
-		<a href="#">استرجاع كلمة السر</a> <br />
-		ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
-	  </div>
-	  <button class="close-button" data-close aria-label="Close reveal" type="button">
-		<span aria-hidden="true">&times;</span>
-	  </button>
+		<div style="background: #E4F6F6; padding: 15px; ">
+			<a href="#">استرجاع كلمة السر</a> <br />
+			ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
+		</div>
+		<button class="close-button" data-close aria-label="Close reveal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>	
-
-	<!-- logo -->
-	<div class="row">
-	  <div class="small-2 small-centered large-6 large-centered columns">
-		<p><img src="images/logo.png" alt="logo image"></p>
-	  </div>
-	</div>
-
-	<!-- breadcrumbs -->
-    <div class="row">
-		<ul class="large-12 column breadcrumb white">
-		  <li><a href="#" class="current"><i class="fi-home large"></i> الرئيسية</a></li>
-		  <li><a href="#">اطلب من أمازون</a></li>
-		  <li class="current"><a href="#">إضافة المنتجات</a></li>
-		</ul>	  
-    </div>
-
-	<!-- body: right side -->
-    <div class="row"> 
-      <div class="small-12 columns "  style="overflow: hidden; padding-right: 0px; padding-left: 0px"> 
-		  <div class="white tabspanel">
-		  	<div>
+	
+	
+	<!-- contents -->
+	<div class="row expanded seagull">
+		
+		<br />
+		
+		<!-- amazon steps -->
+		<div class="small-12 columns text-center">
+			<div>
 				<ul class="amazon-steps">
-					<li> <i class="fi-shopping-cart" aria-hidden="true"></i> تسوق</li>
-					<li class="active"> <i class="fi-download" aria-hidden="true"></i> أضف المنتج</li>
-					<li> <i class="fi-credit-card" aria-hidden="true"> </i>أدفع</li>
-					<li> <i class="fi-shopping-bag" aria-hidden="true"></i> شحن</li>
+					<li> <i class="fi-shopping-cart" aria-hidden="true"></i> <span>تسوق</span></li>
+					<li class="active"> <i class="fi-download" aria-hidden="true"></i> <span>أضف </span></li>
+					<li> <i class="fi-credit-card" aria-hidden="true"> </i><span>إدفع</span></li>
+					<li> <i class="fi-shopping-bag" aria-hidden="true"></i> <span>اشحن</span></li>
 				</ul>
 			</div>
-			
+		</div>
+					
+		<br /> &nbsp;
+	</div>
+	
+	<div class="row expanded white">
+		<div class="columns medium-10 medium-centered">
+
 			<!-- product url title  -->
-			<div class="title">
-				ألصق رابط المنتج من أمازون
+			<div class="small-12 columns title">
+				<br>&nbsp;ألصق رابط المنتج من أمازون
 			</div>
+
 			
 			<!-- product url form -->
 			<div style="padding: 15px; overflow: hidden">
@@ -120,47 +126,50 @@
 					</div>
 
 					<div class="column" style="display: none" id="prod_info">
-						<div class="small-12 large-3 column">
+						<div class="small-12 large-2 column">
 							<img id="prod_img_url" src="http://placehold.it/150x150" class="thumbnail" />
 						</div>
-						<div class="small-12 large-9 column">
+						<div class="small-12 large-10 column">
 							<h3 id="prod_title" class="text-left"> وصف المنتج في هذه الخانة</h3>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2  column"> 
 								<label> السعر بالدولار: </label>  
 								<span id="prod_price"></span>
 							</div>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2 column"> 
 								<label> السعر بالريال:</label> 
 								<span id="prod_price_sar"></span>
 							</div>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2 column"> 
 								<label> اللون: </label> 
 								<span id="prod_color" ></span>
 							</div>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2 column"> 
 								<label> المقاس/الحجم: </label> 
 								<span id="prod_size" ></span>
 							</div>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2 column"> 
 								<label> وزن الشحنة: </label> 
 								<span id="prod_weight" ></span> باوند
 							</div>
-							<div class="small-2 column"> 
+							<div class="small-6 large-2 column"> 
 								<label> تكلفة الشحن:  </label>
 								<span id="prod_shipping" ></span>
-								<span id="ASIN" ></span>ريال
+								ريال
 							</div>
 							
 						</div>
 					</div>
 					
-					<div class="large-12 columns float-right">
-						<input type="submit" class="button expanded persiangreen" id="addToCartBtn" value="أضف" disabled>
+					<div class="large-12 columns">
+						<br>
+						<input type="submit" class="button float-left persiangreen" id="addToCartBtn" value="أضف المنتج" disabled>
 					</div>
 				  </div>
 
 				</form>				
 				<p>&nbsp;</p>
+				
+				<hr />
 
 				<!-- added products (cart) -->
 				<div id="itemsList" style="display: none;">
@@ -185,41 +194,85 @@
 					
 					</div>
 					<div class="small-12 large-4 column">
-						قيمة الفاتورة <h1 id="invoiceCost">57.5$</h1>
-						<div>
-							<ul>
-								<li>عدد المشتريات <span id="itemsCount" class="float-left"></span></li>
-								<li>مجموع قيمة المشتريات<span id="itemsCost" class="float-left"></span></li>
-								<li>مجموع ضريبة المشتريات<span id="invoiceTax" class="float-left"></span></li>
-								<li>رسوم الشحن الدولي <span id="shippingCost" class="float-left cartShipping"></span></li>		
+						<div class="row invoice callout">
+							<div class="column text-center seagull title">قيمة الفاتورة</div>
+							<div class="column text-center invoiceCost" id="invoiceCost">99.99</div>
+							<div class="column">
+								<ul>
+									<li>عدد المشتريات 			<span id="itemsCount" 	class="float-left"></span></li>
+									<li>مجموع قيمة المشتريات	<span id="itemsCost" 	class="float-left"></span></li>
+									<li>مجموع ضريبة المشتريات	<span id="invoiceTax" 	class="float-left"></span></li>
+									<li>رسوم الشحن الدولي 		<span id="shippingCost" class="float-left cartShipping"></span></li>		
+							</div>
+							<a href="payment.html" class="button expanded float-left success"><i class="fi-credit-card" aria-hidden="true"> </i> ادفع </a>
 						</div>
-						<a href="payment.html" class="button primary float-left"><i class="fi-credit-card" aria-hidden="true"> </i> أدفع</a>
 					</div>
 				</div>
 				
 				<!-- end of added products -->
 				<p>&nbsp;</p>			
-			</div>
-		 </div>
-	 </div>
-    </div>
+			</div>			
+		</div>
+	</div>
 
+	<!-- footer -->	
+	<div class="row column">
+
+
+	<!-- footer starts here -->
+	<footer>
 	
-	<!-- footer -->
-	<div class="fixed-bottom ">
-		<nav class="top-bar bottom-bar dblSpanishWhite">
-			<div class="row">
-				<div class="medium-6 column">
-					شركة النورس لإعادة الشحن 2017م &copy;
-				</div>
-			</div>
-		</nav>
-	</div>	
+		<ul class="ittsc-menuv sortable-list" id="ittsc-menu2">
+			<li>عن الموقع
+			<ul>
+				<li><a href="demo">من نحن</a> </li>
+				<li><a href="sec36.html">اتصل بنا</a> </li>
+			</ul>
+			</li>
+			<li>اشحن معنا
+			<ul>
+				<li><a href="demo">كيف نعمل</a> </li>
+				<li><a href="sec36.html">اطلب الآن</a> </li>
+				<li><a href="sec36.html">حساب التكلفة</a> </li>
+			</ul>
+			</li>
+			<li class="sfhover">خدمة الأعضاء
+			<ul>
+				<li><a href="demo">تسجيل دخول</a> </li>
+				<li><a href="sec36.html">متابعة الطلبات</a> </li>
+				<li><a href="sec36.html">تعديل معلومات</a> </li>
+			</ul>
+			</li>
+			<li>الدعم والمساعدة
+				<ul>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">اسئلة متكررة</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">الشروط والأحكام</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec8.html">طلب دعم</a> </li>
+				</ul>
+			</li>
+			<li ><a href="#">وظائف شاغرة </a> </li>
+		</ul>
+		<!-- E N D  M E N U V-->	
+	</footer>	
+			
+	</div>
+
+
+	<br> &nbsp;
+	
+	<div class="row expanded silver top-bar">
+		<div class="small-12 column text-center">
+
+				وكالة النورس للشحن 2017م &copy;
+		</div>
+	</div>
+
 
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/vendor/notify.min.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
+	<script src="js/vendor/owl-carousel/owl.carousel.js"></script>
     <script src="js/foundation.min.js"></script>
     <script src="js/app.js"></script>
   

@@ -7,8 +7,6 @@ $( document ).ready(function() {
 	if( $("#owl-homepage") )
 	{
 		$("#owl-homepage").owlCarousel({
-
-
 		  navigation : false, // Show next and prev buttons
 		  slideSpeed : 300,
 		  paginationSpeed : 400,
@@ -139,7 +137,7 @@ $( document ).ready(function() {
 						+ "<td>"+ newItem.PriceSAR		+" ريال</td>"						
 						+ "<td>"+ newItem.TaxSAR		+" ريال</td>"						
 						+ "<td>"+ newItem.ShippingCost	+" ريال </td>"						
-						+ "<td> <i class='fi-x removeItem button warninng' id='"+ newItem.ID +"'></i></td>"
+						+ "<td> <i class='fi-x removeItem button alert' id='"+ newItem.ID +"'></i></td>"
 						+ "</tr>";
 						
 		$('#items > tbody:last-child').append(newProduct);
