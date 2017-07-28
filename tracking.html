@@ -1,25 +1,28 @@
 <!doctype html>
 <html class="no-js" dir="rtl" lang="ar">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>متابعة الطلب</title>
-    <link rel="stylesheet" href="css/foundation_rtl.css" />
-    <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body class="tranquil">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>متابعة الطلبات</title>
+		
+		<link rel="stylesheet" href="css/foundation_rtl.css" />
+		<link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+			
+		<link rel="stylesheet" href="css/app.css" />
+	</head>
+	<body class="tranquil">
 
-  	<!-- mobile menu -->
-	<div class="title-bar" data-responsive-toggle="site-menu" data-hide-for="medium">
+	<!-- mobile menu -->
+	<div class="title-bar persiangreen" data-responsive-toggle="site-menu" data-hide-for="medium">
 		<button class="menu-icon" type="button" data-toggle></button>
-		<div class="title-bar-title">قائمة الموقع</div>
+		<div class="title-bar-title">القائمة</div>
 	</div>
 	
 	<!-- top bar -->
-	<div class="top-bar persiangreen">
-		<div class="large-10 columns  large-offset-1" >
+	<div class="top-bar persiangreen" id="site-menu">
+		<!-- desktop menu -->
+		<div class="large-10 columns  large-offset-1">
 			<div class="top-bar-right" id="site-menu">
 				<ul class="vertical medium-horizontal dropdown menu sortable-list" data-dropdown-menu >
 				<li><a href="index.html">الرئيسية</a></li>
@@ -29,145 +32,185 @@
 				<li><a href="shipping-calculator.html">حساب التكلفة</a></li>
 				<li><a href="contact.html">اتصل بنا</a></li>
 				</ul>
+
 			</div>
 			<!-- login button : opens modal -->
 			<div class="top-bar-left">
-				<!-- a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/ -->
-				<i class="fi-torso" aria-hidden="true"></i>  مرحبا، عيسى السلطان
+				<a href="#" class="gloassy button" data-open="loginModal">&nbsp;&nbsp;&nbsp; تسجيل الدخول &nbsp;&nbsp;&nbsp;</a><br/>
 			</div>
 		</div>
 	</div>
-	
-	
+
 	<!-- login modal -->
 	<div class="reveal tiny" id="loginModal" data-reveal>
 	  
-	  <div class="title dblSpanishWhite" > 
-	  <i class="fi-torso large"></i>
-	  تسجيل الدخول 
-	  </div>
+		<div class="title dblSpanishWhite" > 
+		<i class="fi-torso large"></i>
+			تسجيل الدخول 
+		</div>
 	  
- 	  <div style="padding: 15px;">
-		<form>
-		  <div class="row">
-			<div class="large-12 columns">
-				<input type="text"  placeholder="اسم المستخدم" />
-			</div>
-			<div class="large-12 columns">
-				<input type="text"  placeholder="كلمة السر" />
-			</div>
-			<div class="large-12 columns">
-				<input type="checkbox"  placeholder="حفظ البيانات" />
-				حفظ البيانات
-			</div>
-			<div class="large-12 columns">
-				<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
-			</div>
-		  </div>
-	    </form>
-	  </div>  
+		<div style="padding: 15px;">
+			<form>
+			  <div class="row">
+				<div class="large-12 columns">
+					<input type="text"  placeholder="اسم المستخدم" />
+				</div>
+				<div class="large-12 columns">
+					<input type="text"  placeholder="كلمة السر" />
+				</div>
+				<div class="large-12 columns">
+					<input type="checkbox"  placeholder="حفظ البيانات" />
+					حفظ البيانات
+				</div>
+				<div class="large-12 columns">
+					<input type="submit"  value="تسجيل الدخول"  class="button expanded persiangreen" />
+				</div>
+			  </div>
+			</form>
+		</div>  
 	  
-	  <div style="background: #E4F6F6; padding: 15px; ">
-		<a href="#">استرجاع كلمة السر</a> <br />
-		ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
-	  </div>
-	  <button class="close-button" data-close aria-label="Close reveal" type="button">
-		<span aria-hidden="true">&times;</span>
-	  </button>
+		<div style="background: #E4F6F6; padding: 15px; ">
+			<a href="#">استرجاع كلمة السر</a> <br />
+			ليس لديك حساب بالموقع؟ 		 <a href="signup.html">تسجيل الاشتراك الآن</a>
+		</div>
+		<button class="close-button" data-close aria-label="Close reveal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
 	</div>	
-
-	<!-- logo -->
-	<div class="row">
-	  <div class="small-2 small-centered large-6 large-centered columns">
-		<p><img src="images/logo.png" alt="logo image"></p>
-	  </div>
-	</div>
-
-	<!-- breadcrumbs -->
-    <div class="row">
-		<ul class="large-12 column breadcrumb white">
-		  <li><a href="#"><i class="fi-home large"></i> الرئيسية</a></li>
-		  <li><a href="#">حسابي</a></li>
-		  <li><a href="#">متابعة الطلبات</a></li>
-		</ul>	  
-    </div>
-
-	<!-- body: right side -->
-    <div class="row"> 
-		<div class="small-12 columns "  style="overflow: hidden; padding-right: 0px; padding-left: 0px"> 
-		  <div class="white tabspanel">
-
-			<div class="title">
-				<i class="fi-shopping-bag large" aria-hidden="true"></i> متابعة الطلبات
-			</div>
-			<div style="padding: 15px;">				
-				
-				<table>
-					  <thead>
-						<tr>
-							<th width="150">صورة المنتج</th>
-							<th width="200">الوصف</th>
-							<th width="150">السعر</th>
-							<th width="150">الوزن</th>
-							<th width="150">تاريخ الطلب</th>
-							<th width="150">رقم الطلب</th>
-							<th width="150">الحالة</th>
-						</tr>
-					  </thead>
-					  
-					  <tbody>
-						
-						<tr>
-							<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
-							<td>جوال امازون </td>
-							<td>19.9</td>
-							<td>1</td>
-							<td>احمر</td>
-							<td>L</td>
-							<td>تم الشراء</td>
-						</tr>
-						<tr>
-							<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
-							<td>كمبيوتر</td>
-							<td>19.9</td>
-							<td>1</td>
-							<td>احمر</td>
-							<td>L</td>
-							<td>تم الشراء</td>
-						</tr>	
-						<tr>
-							<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
-							<td>ملابس رجالية</td>
-							<td>299.9</td>
-							<td>10</td>
-							<td>غير محدد</td>
-							<td>L</td>
-							<td>وصول جزئي</td>
-						</tr>							
-						
-					</tbody>
-				</table>						
-				<p>&nbsp;</p>			
-			
+	
+	
+	<!-- contents -->
+	<div class="row expanded seagull">
+		
+		<br />
+		
+		<!-- user quick info bar -->
+		<div class="small-12 columns text-center">
+			<div>
+				<ul class="medium-horizontal menu">
+					<li> <i class="fi-torso" aria-hidden="true"></i> <span>{usesrname}</span></li>
+					<li class="active"> <i class="fi-clock" aria-hidden="true"></i> <span>آخر دخول </span></li>
+					<li> <i class="fi-credit-card" aria-hidden="true"> </i><span>مجموع الطلبات</span></li>
+					<li> <i class="fi-alert" aria-hidden="true"></i> <span>انتظار الرد</span></li>
+				</ul>
 			</div>
 		</div>
-	 </div>
-    </div>
-
-
+					
+		<br /> &nbsp;
+	</div>
 	
-	<!-- footer -->
-	<div class="fixed-bottom ">
-		<nav class="top-bar bottom-bar dblSpanishWhite">
-			<div class="row">
-				<div class="medium-6 column">
-					شركة النورس لإعادة الشحن 2017م &copy;
-				</div>
+	<div class="row expanded white">
+		<div class="columns medium-10 medium-centered">
+
+			<!-- tacking   -->
+			<div class="small-12 columns title">
+				<br>&nbsp;متابعة الطلبات
 			</div>
-		</nav>
-	</div>	
+
+			<table>
+				  <thead>
+					<tr>
+						<th width="200">صورة المنتج</th>
+						<th width="200">الوصف</th>
+						<th width="200">السعر</th>
+						<th>الكمية</th>
+						<th width="150">اللون</th>
+						<th width="150">المقاس</th>
+						<th width="150">الحالة</th>
+					</tr>
+				  </thead>
+				  
+				  <tbody>
+					
+					<tr>
+						<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
+						<td>جوال امازون </td>
+						<td>19.9</td>
+						<td>1</td>
+						<td>احمر</td>
+						<td>L</td>
+						<td>تم الشراء</td>
+					</tr>
+					<tr>
+						<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
+						<td>كمبيوتر</td>
+						<td>19.9</td>
+						<td>1</td>
+						<td>احمر</td>
+						<td>L</td>
+						<td>تم الشراء</td>
+					</tr>	
+					<tr>
+						<td><img src="http://placehold.it/150x150" class="thumbnail" /> </td>
+						<td>ملابس رجالية</td>
+						<td>299.9</td>
+						<td>10</td>
+						<td>غير محدد</td>
+						<td>L</td>
+						<td>وصول جزئي</td>
+					</tr>							
+					
+				</tbody>
+			</table>				
+						
+		</div>
+	</div>
+
+	<!-- footer -->	
+	<div class="row column">
+
+
+	<!-- footer starts here -->
+	<footer>
+	
+		<ul class="ittsc-menuv sortable-list" id="ittsc-menu2">
+			<li>عن الموقع
+			<ul>
+				<li><a href="demo">من نحن</a> </li>
+				<li><a href="sec36.html">اتصل بنا</a> </li>
+			</ul>
+			</li>
+			<li>اشحن معنا
+			<ul>
+				<li><a href="demo">كيف نعمل</a> </li>
+				<li><a href="sec36.html">اطلب الآن</a> </li>
+				<li><a href="sec36.html">حساب التكلفة</a> </li>
+			</ul>
+			</li>
+			<li class="sfhover">خدمة الأعضاء
+			<ul>
+				<li><a href="demo">تسجيل دخول</a> </li>
+				<li><a href="sec36.html">متابعة الطلبات</a> </li>
+				<li><a href="sec36.html">تعديل معلومات</a> </li>
+			</ul>
+			</li>
+			<li>الدعم والمساعدة
+				<ul>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">اسئلة متكررة</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec100.html">الشروط والأحكام</a> </li>
+				<li><a href="http://hostingangle.com/demo2/sec8.html">طلب دعم</a> </li>
+				</ul>
+			</li>
+			<li ><a href="#">وظائف شاغرة </a> </li>
+		</ul>
+		<!-- E N D  M E N U V-->	
+	</footer>	
+			
+	</div>
+
+
+	<br> &nbsp;
+	
+	<div class="row expanded silver top-bar">
+		<div class="small-12 column text-center">
+
+				وكالة النورس للشحن 2017م &copy;
+		</div>
+	</div>
+
 
     <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/jquery.cookie.js"></script>
     <script src="js/vendor/what-input.min.js"></script>
     <script src="js/foundation.min.js"></script>
     <script src="js/app.js"></script>
